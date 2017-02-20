@@ -93,3 +93,8 @@ img#pic {
 .card-wrapper > * {
     position: absolute;
 }
+.spacer {
+    box-sizing: border-box;
+    height:1370px;
+    width: 100%;
+}
