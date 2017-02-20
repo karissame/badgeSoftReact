@@ -98,3 +98,12 @@ img#pic {
     height:1370px;
     width: 100%;
 }
+#preview{
+    position:absolute;
+    left:0;
+    top:0;
+    width:384px;
+}
+#preview .card-wrapper{
+    border-style: none;
+}
