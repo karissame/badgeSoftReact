@@ -3,3 +3,5 @@ node_modules/*
 *.gz
 
 *.xml
+
+npm-debug.log
