@@ -17,7 +17,8 @@ export default class Layout extends React.Component {
                 fname: "",
                 lname: "",
                 imgUrl: ""
-            }
+            },
+            page:'home'
         };
     }
     login(loginObj) {
@@ -37,7 +38,7 @@ export default class Layout extends React.Component {
                             loggedIn: true,
                             user: response.data.user
                         });
-                        console.log(this.state.user);
+                        
 
                     }
 
@@ -52,7 +53,7 @@ export default class Layout extends React.Component {
 
         }
     renderCardEditor() {
-        return <CardEditor />
+        return <CardEditor />;
     }
     renderHeader() {
         return <Header login={(a) => this.login(a)} user={this.state.user} loggedIn={this.state.loggedIn}/>;
@@ -63,6 +64,15 @@ export default class Layout extends React.Component {
     renderProfile() {
         return <Profile user={this.state.user} loggedIn={this.state.loggedIn}/>;
     }
+    renderSelected() {
+        console.log("about to render main content block. this.state.page=");
+        console.log(this.state.page);
+        if (this.state.page == "home") {
+            return <Profile user={this.state.user} loggedIn={this.state.loggedIn}/>;
+        } else if (this.state.page == "editor") {
+            return <CardEditor />;
+        }
+    }
     render() {
             return (
                 <div className="wrapper">
@@ -70,9 +80,8 @@ export default class Layout extends React.Component {
                         {this.renderHeader()}
                     </div>
                     <div className="container">
-                    <div className="editor">
-                        {this.renderCardEditor()}
-                    </div></div>
+                        {this.renderSelected()}
+                    </div>
                     <div className="footer">
                         {this.renderFooter()}
                     </div>
