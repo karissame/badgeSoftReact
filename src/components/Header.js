@@ -46,7 +46,7 @@ export default class Header extends React.Component {
                     <ul>
                     <li><h3>Welcome, {this.props.user.username}!</h3></li>
                   </ul>
-                  <img id="pic" src={this.props.user.imageUrl || "https://www.carthage.edu/themes/toph/assets/img/generic-logo.png"} width="100px" height="100px" />
+                  <img id="pic" src={this.props.user.imageurl} width="100px" height="100px" />
               </div>
           );
       } else {

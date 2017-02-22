@@ -12,14 +12,14 @@ import axios from 'axios';
 const bodyParser = require('body-parser');
 
 
-const mongoose = require('mongoose');
-const bluebird = require('bluebird');
-mongoose.Promise = bluebird;
+// const mongoose = require('mongoose');
+// const bluebird = require('bluebird');
+// mongoose.Promise = bluebird;
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const server = new Server(app);
-mongoose.connect('mongodb://localhost/reactLoginDemo');
+// mongoose.connect('mongodb://localhost/reactLoginDemo');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -27,7 +27,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(Express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+var knex = require('knex')({
+  client: 'mysql',
+  connection: {
+    host : '35.166.251.127',
+    user : 'karissa',
+    password : 'wnaptihtr',
+    database : 'badge'
+  }
+});
 
 // ******  PASSWORD ENCRYPTION  ******
 var bcrypt = require('bcrypt');
@@ -39,22 +47,11 @@ bcrypt.genSalt(saltRounds,function(err,salt){
     console.log("salt",salt);
     bcrypt.hash(myPass,salt,function(err, hash){
         //Will store with user record
-        console.log("hash",hash);
     });
 });
 
 var hash="$2a$10$FrjwaswIyGTg/RcTvUtpi.xvxSXEQiHHjBqnobQPHMolqDl4N3dGG";
 bcrypt.compare(myPass,hash,function(err,res){
-    console.log("res",res);
-});
-
-const UserSchema = mongoose.model('User',   {
-    username:   { type: String, required: true},
-    fname:   { type: String, required: true},
-    lname:   { type: String, required: true},
-    password:   { type: String, required: true},
-    imageUrl:   { type: String},
-
 });
 
 var UserClass = function()  {
@@ -67,20 +64,19 @@ var UserClass = function()  {
 
 UserClass.prototype.register = function(callback) {
     var tryingThis = this;
-    console.log("attemping to register");
-    console.log(this);
-    UserSchema.findOne({username: this.username})
-        .then(function(err,user)    {
+    console.log("attempting to register");
+    console.log(this.username);
+    knex.select('*').from('user').where('username',this.username)
+        .asCallback(function(err,rows)    {
             if (err)    {
-                console.log('Signup error', err.message);
-                callback({success:false,message:'user not saved'});
+                return console.error(err);
             }
-            // console.log(this.username);
-            console.log(user);
+            console.log("logging knex user return"+rows);
+            console.log("done logging user");
             // if user found
-            if (typeof user !== "undefined" && typeof user.username==="string" && user.username !== this.username ) {
-                if (user.username[0].username)  {
-                    console.log("username already exists, username: " + user.username);
+            if (typeof rows !== "undefined" && typeof rows.username==="string" && rows.username !== rows.username ) {
+                if (rows.username[0].username)  {
+                    console.log("username already exists, username: " + rows.username);
                     callback({success:false,message:'user not saved'});
                 }
             var err = new Error();
@@ -90,24 +86,23 @@ UserClass.prototype.register = function(callback) {
             }
             // save user
             else {
-                {
                     // "this" instead of user to pass in
-                    // console.log("anything else");
-                    console.log(tryingThis);
-
-                    var dbUser = new UserSchema(tryingThis);
-                    console.log("about to save");
-                    console.log(dbUser);
-                    dbUser.save()
-                        .then(function(savedObject) {
-                            console.log("done");
-                            callback({success:true,message:'user saved',data:savedObject});
-                        })
-                        .catch(function(err)    {
-                            console.log("didn\'t save because", err.stack);
-                        });
+                    console.log("user was not found in query. About to log user then insert");
+                    console.log(tryingThis.fname);
+                    if (!tryingThis.imageUrl) {
+                        tryingThis.imageUrl = "https://www.carthage.edu/themes/toph/assets/img/generic-logo.png";
+                    }
+                    knex('user').insert({fname:tryingThis.fname,lname:tryingThis.lname,username:tryingThis.username,password:tryingThis.password,imageUrl:tryingThis.imageUrl})
+                    .asCallback(function(err,user)    {
+                        if (err)    {
+                            console.log('Signup error', err.message);
+                            callback({success:false,message:'user not saved'});
+                        }
+                        // console.log(this.username);
+                        console.log(user);
+                        callback({success:true,message:'user saved',data:user});
+                    });
                 };
-            };
         });
     };
 
@@ -116,16 +111,21 @@ app.post("/login",function(req,res){
     // console.log(req.body);
     var username=req.body.username;
     var password=req.body.password;
-    UserSchema.findOne({"username":username})
-        .then(function(user)    {
+
+    knex.select('*').from('user').where('username',username).limit(1)
+        .asCallback(function(err,user)    {
+            if (err)    {
+                return console.error(err);
+            }
+            console.log(user);
             if (user)    {
                 console.log("User found. Comparing password next...");
-                bcrypt.compare(password,user.password, function(err,loginresult)               {
+                bcrypt.compare(password,user[0].password, function(err,loginresult)               {
                     // console.log("res compare",res);
                     if(loginresult){
                         console.log("passwords match");
-                        console.log("user object is: "+user);
-                        res.json({login:true,user:user});
+                        console.log("user object is: "+user[0]);
+                        res.json({login:true,user:user[0]});
                     } else {
                         console.log("passwords don't match");
                         res.json({login:false});
@@ -137,10 +137,7 @@ app.post("/login",function(req,res){
                     }
 
                 })
-        .catch(function(err){
-            console.log("error:",err.message);
-            console.log(err.stack);
-        });
+
 });
 
 // **************************
