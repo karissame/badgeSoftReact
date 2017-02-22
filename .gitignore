@@ -5,7 +5,3 @@ node_modules/*
 *.xml
 
 npm-debug.log
-
-src/static/js/bundle.js
-
-src/static/js/bundle.js
