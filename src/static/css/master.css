@@ -12,7 +12,7 @@ a:hover, a:focus {
     text-decoration: none;
 }
 
-h3, h4 {
+#canvas h3, h4 {
     margin-top: 1.5em !important;
 }
 

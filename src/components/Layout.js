@@ -38,25 +38,26 @@ export default class Layout extends React.Component {
                             loggedIn: true,
                             user: response.data.user
                         });
-                        
-
                     }
-
-
                   })
                   .catch(function (error) {
                    console.log(error);
                    });
               }
-
-
-
         }
+    changePage(page) {
+        console.log("changing page");
+        if (this.state.loggedIn) {
+            this.setState({
+                page: page
+            });
+        }
+    }
     renderCardEditor() {
         return <CardEditor />;
     }
     renderHeader() {
-        return <Header login={(a) => this.login(a)} user={this.state.user} loggedIn={this.state.loggedIn}/>;
+        return <Header login={(a) => this.login(a)} user={this.state.user} loggedIn={this.state.loggedIn} changePage={(a) => this.changePage(a)} />;
     }
     renderFooter() {
         return <Footer />;
