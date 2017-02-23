@@ -140,6 +140,17 @@ function addAccessors($scope) {
     canvas.backgroundColor = value;
     canvas.renderAll();
   };
+  $scope.addPlaceholder = function () {
+    var coord = getRandomLeftTop();
+    canvas.add(new fabric.Rect({
+      left: coord.left,
+      top: coord.top,
+      fill: '#ffba78',
+      width: 250,
+      height: 350,
+      opacity: 1,
+    }));
+  };
   $scope.addRect = function () {
     var coord = getRandomLeftTop();
     canvas.add(new fabric.Rect({
@@ -156,7 +167,7 @@ function addAccessors($scope) {
     canvas.add(new fabric.Circle({
       left: coord.left,
       top: coord.top,
-      fill: '#00ade6',
+      fill: '#fff',
       radius: 50,
       opacity: 1
     }));
@@ -193,7 +204,6 @@ function addAccessors($scope) {
       left: getRandomInt(200, 300),
       top: getRandomInt(200, 300),
       fontFamily: 'helvetica',
-
       fill: '#000' + getRandomColor(),
       scaleX: 0.5,
       scaleY: 0.5,
@@ -221,83 +231,22 @@ function addAccessors($scope) {
       addShape(match[0]);
     }
   };
-  function addImage(imageName, minScale, maxScale) {
-    var coord = getRandomLeftTop();
-    fabric.Image.fromURL('http://www.fearlessblue.com/ic/diagram/images/' + imageName, function (image) {
+  // ***********ADD IMAGE FROM WEBSITE********
+  function addImage(imageName) {
+    fabric.Image.fromURL('https://' + imageName, function (image) {
       image.set({
-        left: coord.left,
-        top: coord.top,
-        angle: 0
-      }).scale(getRandomNum(minScale, maxScale)).setCoords();
+        left: 95,
+        top: 165
+      });
       canvas.add(image);
     });
   };
   $scope.addImage1 = function () {
-    addImage('man.png', 0.8, 0.75);
+    addImage('encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToyqM2gcwH1vXUwN0vOMsl24f8Yns7Y-H-rFbssDUOVBQUeREYOA');
   };
-  $scope.addImage2 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/woman.png', 0.8, 0.75);
-  };
-  $scope.addImage3 = function () {
-    addImage('images/dog.png', 0.8, 0.75);
-  };
-  $scope.addImage4 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/street.png', 0.5, 0.75);
-  };
-  $scope.addImage5 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/car.png', 0.7, 0.75);
-  };
-  $scope.addImage6 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/truck.png', 0.7, 0.75);
-  };
-  $scope.addImage7 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/schoolbus.png', 0.7, 0.75);
-  };
-  $scope.addImage8 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/medical.png', 0.7, 0.75);
-  };
-  $scope.addImage9 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/incidentcommand.png', 0.7, 0.75);
-  };
-  $scope.addImage10 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/parkingstalls.png', 0.5, 0.75);
-  };
-  $scope.addImage11 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/tree.png', 0.5, 0.75);
-  };
-  $scope.addImage12 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/rock.png', 0.5, 0.75);
-  };
-  $scope.addImage13 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/boulder.png', 0.5, 0.75);
-  };
-  $scope.addImage14 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/gravel.png', 0.5, 0.75);
-  };
-  $scope.addImage15 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/bush.png', 0.5, 0.75);
-  };
-  $scope.addImage16 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/fence.png', 0.8, 0.85);
-  };
-  $scope.addImage17 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/water.png', 0.8, 0.85);
-  };
-  $scope.addImage18 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/ditch.png', 0.5, 0.75);
-  };
-  $scope.addImage19 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/powerlines.png', 0.8, 0.85);
-  };
-  $scope.addImage20 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/barrier.png', 0.5, 0.75);
-  };
-  $scope.addImage21 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/policecar.png', 0.7, 0.75);
-  };
-  $scope.addImage22 = function () {
-    addImage('http://www.fearlessblue.com/ic/diagram/images/map.png', 0.9, 0.95);
-  };
+
+
+
   $scope.confirmClear = function () {
     if (confirm('Are you sure?')) {
       canvas.clear();
