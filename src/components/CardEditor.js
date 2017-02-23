@@ -21,14 +21,8 @@ export default class CardEditor extends React.Component {
   render() {
     return (
       <div>
-
-
-
-
+        <iframe id="kitchensinkiframe" className="kitchensink" src={`/kitchen/kitchensink.html`}/>
       </div>
-
-
-
 
     );
   };
