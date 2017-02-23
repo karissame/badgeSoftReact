@@ -16,7 +16,6 @@ export default class Profile extends React.Component {
 
         this.makeInput = this.makeInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
     }
     makeInput() {
         console.log("in makeInput");
@@ -25,16 +24,13 @@ export default class Profile extends React.Component {
             username:this.props.user.username,
             fname:this.props.user.fname,
             lname:this.props.user.lname,
-            imageurl:this.props.user.imageurl
+            imageurl:this.props.user.imageurl,
+            password:'',
+            passconfirm:''
         });
-
-
         this.setState({edit:true});
     }
     handleChange(field,event) {
-        console.log("this field made a change");
-        console.log(field);
-        console.log(event);
         var newState = {};
         newState[field]=event.target.value;
         this.setState(newState);
@@ -42,17 +38,20 @@ export default class Profile extends React.Component {
 
     handleSubmit(event) {
       console.log('A form was submitted');
-      event.preventDefault();
-      if (this.state.passconfirm || this.state.passconfirm) {
-          if (this.state.password === this.state.passconfirm) {
+      if (this.state.password === this.state.passconfirm) {
+          if (this.state.passconfirm || this.state.passconfirm) {
               console.log("Password change accepted. Both inputs match");
-          } else {
+          }
+        //   axios.post('/updateuser') {
+          //
+        //   }
+      } else {
               console.log("Both passwords must match. Please correct and resubmit");
               alert("Both passwords must match. Please correct and resubmit");
-              return;
           }
-      } 
+      this.setState({edit:false});
     // ?Fill this in
+      event.preventDefault();
     }
     render() {
             if (this.props.loggedIn) {
