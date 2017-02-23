@@ -41,13 +41,13 @@ export default class Header extends React.Component {
         if (this.props.loggedIn) {
             return (
               <div className="nav">
-                  <ul>
+                  <ul id="buttonsmargin">
                     <li onClick={(e) => this.props.login({e})}>Logout</li>
                     <li onClick={(e) => this.props.changePage("editor")}>Card Editor</li></ul>
                     <ul>
-                    <li><h3>Welcome, {this.props.user.username}!</h3></li>
+                    <li><h3 id="welcomename">Welcome, {this.props.user.username}!</h3></li>
                   </ul>
-                  <img id="pic" src={this.props.user.imageurl} width="100px" height="100px" />
+                  <img id="pic" src={this.props.user.imageurl} width="75px" height="75px" />
               </div>
           );
       } else {

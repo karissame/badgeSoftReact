@@ -21,7 +21,7 @@ body {
 .nav {
     background-color: #00ade6;
     width: 100%;
-    height: 110px;
+    height: 85px;
     margin: 0;
     padding: 5px;
 }
@@ -56,7 +56,7 @@ a, a:visited, a:hover, a:active {
 }
 #footerImg {
     width: 100%;
-    height: 100px;
+    height: 80px;
     bottom: 0px;
     left: 0px;
     margin: 0;
@@ -67,6 +67,14 @@ a, a:visited, a:hover, a:active {
 #updateform {
     margin-top: 50px;
 }
+#buttonsmargin  {
+    margin-bottom: 0px;
+}
+#welcomename    {
+    margin-top: 8px;
+    margin-bottom: 6;
+}
+
 #profile {
     background-color: #FED100;
     border-radius: 5%;
@@ -78,7 +86,7 @@ a, a:visited, a:hover, a:active {
 }
 #profile h3{
     display: inline-block;
-    margin: 5px;
+    margin: 0px;
 }
 #profile h2{
     font-weight: bolder;
@@ -87,7 +95,7 @@ a, a:visited, a:hover, a:active {
 img#pic {
     position: absolute;
     right: 5px;
-    top: 5px;
+    top: 4px;
 }
 .hidden {
     visibility: collapse;
@@ -124,4 +132,11 @@ img#pic {
 }
 #preview .card-wrapper{
     border-style: none;
+}
+#kitchensinkiframe  {
+    background:none transparent;
+    border-style: none;
+    height: 670px;
+    width: 70%;
+    margin-left: 15%;
 }
