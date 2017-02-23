@@ -62,7 +62,8 @@ export default class CardEditor extends React.Component {
 
 
 
-  /// ****************** this is the example with the red square
+  /*/// ****************** this is the example with the red square
+>>>>>>> origin/master
 // render() {
     //     return  (
     //     <div>
@@ -86,5 +87,10 @@ export default class CardEditor extends React.Component {
     //             {objects}
     //           </div>
     //     );}
+<<<<<<< HEAD
     //
 
+=======
+    //   }*/
+
+  // };

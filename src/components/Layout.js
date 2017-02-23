@@ -26,7 +26,8 @@ export default class Layout extends React.Component {
         console.log("in login");
         if (this.state.loggedIn) {
             this.setState({
-                loggedIn: false
+                loggedIn: false,
+                page: 'home'
             });
         } else {
                 axios.post('/login',loginObj)
