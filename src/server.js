@@ -173,16 +173,18 @@ app.post("/register", function(req,res) {
 app.post("/updateuser", function(req,res) {
     console.log("starting registration in server");
     var newUser = req.body.user;
-    console.log("received these user props from react");
+    console.log("received these user values from react");
     console.log(newUser);
-    var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(req.body.user.password, salt);
-    newUser.password = hash;
-    console.log("Password is " + newUser.password);
+    if (req.body.user.password) {
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(req.body.user.password, salt);
+        newUser.password = hash;
+        console.log("Password is " + newUser.password);
+    }
     console.log("about to register this user info:");
     console.log(newUser);
     knex('user').where('username',newUser.username).update(newUser)
-        .asCallbackfunction(err,user)    {
+        .asCallback(function(err,user)    {
             if (err)    {
                 return console.error(err);
             }
@@ -192,7 +194,7 @@ app.post("/updateuser", function(req,res) {
             } else {
             res.send("update returned no response");
         }
-    }
+    })
 });
 
 // **************************
