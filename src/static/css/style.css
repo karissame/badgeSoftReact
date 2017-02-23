@@ -3,6 +3,18 @@ body {
     margin: 0;
     background-color: #FDFDFD;
 }
+#canvas-wrapper {
+    float:left;
+    position: relative;
+
+}
+#textstyle  {
+    float:left;
+}
+#text-wrapper    {
+    float:right;
+    position: relative;
+}
 #main{
     width: 100%;
 }
