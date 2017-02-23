@@ -143,6 +143,36 @@ app.post("/login",function(req,res){
 });
 
 // **************************
+app.post('/checkConnection', function(req,res) {
+    console.log('checking user supplied db');
+    console.log(req.body.data);
+    var table = req.body.data.dbtable;
+    var userknex = require('knex')({
+      client: req.body.data.client,
+      connection: req.body.data.connection,
+    });
+    userknex.select('*').from(table).limit(1)
+    .asCallback(function(err,results)    {
+        if (err)    {
+            if (err.code == 'ER_NO_TABLES_USED') {
+                res.send({success:true,message:"Connection OK, Enter the table you wish to use"});
+            } else if (err.code == 'ER_BAD_DB_ERROR') {
+                res.send({success:false,message:"Please check your Database name"});
+            } else if (err.code == 'ER_NO_SUCH_TABLE') {
+                res.send({success:true,message:"Connection OK, Table Name Incorrect"});
+            }else {
+            res.send({success:false,message:err.message});
+            }
+        } else{
+            if (results) {
+                res.send({success:true,message:'Successfully connected to your Table'});
+            }
+        }
+    })
+});
+
+
+// **************************
 app.post("/register", function(req,res) {
     console.log("starting registration");
     var newUser = new UserClass();

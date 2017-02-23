@@ -17,6 +17,7 @@ export default class Profile extends React.Component {
 
         this.makeInput = this.makeInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.checkConnection = this.checkConnection.bind(this);
     }
     makeInput() {
         console.log("in makeInput");
@@ -32,11 +33,35 @@ export default class Profile extends React.Component {
             dbhost:connection.host,
             dbuser:connection.user,
             dbpass:connection.password,
-            dbtable:connection.database
+            dbselected:connection.database,
+            dbtable:this.props.user.dbtable
         });
         console.log(this.state);
         console.log("Should be re-rendered as inputs now");
     }
+    checkConnection(field,event) {
+        var data = {
+            client:this.state.dbclient,
+            dbtable:this.state.dbtable,
+            connection:{
+                host:this.state.dbhost,
+                user:this.state.dbuser,
+                password:this.state.dbpass,
+                database:this.state.dbselected
+            }
+        };
+        var self = this;
+        axios.post('/checkConnection', {data:data})
+        .then(function (response) {
+            console.log(response.data.message);
+            self.setState({dbalert:response.data.message});
+        })
+        .catch(function (error) {
+            console.log(error);
+            self.setState({dbalert:error});
+        })
+    }
+
     handleChange(field,event) {
         var newState = {};
         newState[field]=event.target.value;
@@ -61,11 +86,12 @@ export default class Profile extends React.Component {
                   imageurl:this.state.imageurl,
                   password:this.state.password,
                   dbclient:this.state.dbclient,
+                  dbtable:this.state.dbtable,
                   connection:JSON.stringify({
-                    host:this.state.dbhost,
-                    user:this.state.dbuser,
-                    password:this.state.dbpass,
-                    database:this.state.dbtable
+                      host:this.state.dbhost,
+                      user:this.state.dbuser,
+                      password:this.state.dbpass,
+                      database:this.state.dbselected
                 })
               };
           } else {
@@ -76,11 +102,12 @@ export default class Profile extends React.Component {
                   lname:this.state.lname,
                   imageurl:this.state.imageurl,
                   dbclient:this.state.dbclient,
+                  dbtable:this.state.dbtable,
                   connection:JSON.stringify({
                       host:this.state.dbhost,
                       user:this.state.dbuser,
                       password:this.state.dbpass,
-                      database:this.state.dbtable
+                      database:this.state.dbselected
               })
           };}
           console.log("Getting ready to post to server");
@@ -116,11 +143,19 @@ export default class Profile extends React.Component {
                               <h3 id="imgUrl">Image Url:&nbsp; &nbsp;</h3><input value={this.state.imageurl} onChange={this.handleChange.bind(this,'imageurl')} placeholder={this.props.user.imgUrl} /><br />
                               </div><div id="profile" className="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0">
                               <h2>Database Connection</h2>
-                              <h3 id="dbclient">DB Type:&nbsp; &nbsp; </h3><input value={this.state.dbclient} onChange={this.handleChange.bind(this,'dbclient')} /><br />
+                              <h3 id="dbclient">DB Type:&nbsp; &nbsp; </h3><select value={this.state.dbclient} onChange={this.handleChange.bind(this,'dbclient')}>
+                                  <option value='mysql'>MySQL</option>
+                                  <option value='pg'>Postgres</option>
+                                  <option value='oracle'>Oracle</option>
+                                  <option value='mssql'>SQL Server</option></select><br />
                               <h3 id="dbhost">Host/IP:&nbsp; &nbsp; </h3><input value={this.state.dbhost} onChange={this.handleChange.bind(this,'dbhost')} /><br />
                               <h3 id="dbuser">User:&nbsp; &nbsp; </h3><input value={this.state.dbuser} onChange={this.handleChange.bind(this,'dbuser')} /><br />
                               <h3 id="dbpass">DB Password:&nbsp; &nbsp; </h3><input value={this.state.dbpass} onChange={this.handleChange.bind(this,'dbpass')} /><br />
-                              <h3 id="dbtable">Table to Use:&nbsp; &nbsp; </h3><input value={this.state.dbtable} onChange={this.handleChange.bind(this,'dbtable')} /><br />
+                              <h3 id="dbselected">Database to Use:&nbsp; &nbsp; </h3><input value={this.state.dbselected}
+                              onBlur={this.checkConnection.bind(this,'dbtable')} onChange={this.handleChange.bind(this,'dbselected')} /><br />
+                              <h3 id="dbtable">Table to Use:&nbsp; &nbsp; </h3><input value={this.state.dbtable} onBlur={this.checkConnection.bind(this,'dbtable')} onChange={this.handleChange.bind(this,'dbtable')} />
+                              <br />
+                              <div id="expiring" className="alert alert-info" role="alert">{this.state.dbalert}</div>
                               <input type="submit" value="Submit" />
                               <input type="submit" value="Cancel" />
                           </div>

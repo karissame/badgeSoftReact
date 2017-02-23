@@ -43,7 +43,8 @@ export default class Header extends React.Component {
               <div className="nav">
                   <ul>
                     <li onClick={(e) => this.props.login({e})}>Logout</li>
-                    <li onClick={(e) => this.props.changePage("editor")}>Card Editor</li></ul>
+                    <li onClick={(e) => this.props.changePage("editor")}>Card Editor</li>
+                    <li onClick={(e) => this.props.changePage("home")}>Profile</li></ul>
                     <ul>
                     <li><h3>Welcome, {this.props.user.username}!</h3></li>
                   </ul>

@@ -89,9 +89,15 @@ img#pic {
     right: 5px;
     top: 5px;
 }
+.alert {
+    padding:0;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
 .hidden {
     visibility: collapse;
 }
+
 /*This is for the cardEditor section*/
 /*This is 2x the size we want if we use html2pdf so we will need to set zoom at .5*/
 /*http://www.html2pdf.it/?url=https%3A%2F%2Foutput.jsbin.com%2Ffurojaxaco&download=false&format=Letter&downloadToken=1487551500883&orientation=portrait&margin=0cm&zoom=0.5*/
