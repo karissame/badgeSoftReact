@@ -198,18 +198,17 @@ function addAccessors($scope) {
       y: 245
     }], {left: coord.left, top: coord.top, fill: '#00ade6', opacity: 1}));
   };
-  $scope.addText = function () {
-    var text = 'New Text';
-    var textSample = new fabric.Text(text.slice(0, getRandomInt(0, text.length)), {
-      left: getRandomInt(200, 300),
-      top: getRandomInt(200, 300),
+  $scope.addText = function (text) {
+    var text = "New Text";
+    var textSample = new fabric.Text(text, {
+      left: 192,
+      top: 450,
       fontFamily: 'helvetica',
       fill: '#000' + getRandomColor(),
       scaleX: 0.5,
       scaleY: 0.5,
       fontWeight: '',
-      originX: 'left',
-      hasRotatingPoint: true,
+      originX: 'center',
       centerTransform: true
     });
     canvas.add(textSample);
@@ -232,20 +231,29 @@ function addAccessors($scope) {
     }
   };
   // ***********ADD IMAGE FROM WEBSITE********
-  function addImage(imageName) {
-    fabric.Image.fromURL('https://' + imageName, function (image) {
+  function addImage(database) {
+    fabric.Image.fromURL('/kitchen/placeholder.jpeg?database=' + database, function (image) {
       image.set({
         left: 95,
-        top: 165
+        top: 165,
       });
       canvas.add(image);
     });
   };
-  $scope.addImage1 = function () {
-    addImage('encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToyqM2gcwH1vXUwN0vOMsl24f8Yns7Y-H-rFbssDUOVBQUeREYOA');
+  // function addImage1(database) {
+  //   addImage('encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToyqM2gcwH1vXUwN0vOMsl24f8Yns7Y-H-rFbssDUOVBQUeREYOA&database=' + database);
+  // };
+  $scope.databasesource = function () {
+    var database = prompt("What is the fucking source of your database?", "Put your database here.");
+    if (database) {
+      addImage(database);
+    } else {
+      alert("No database entered, ya dingus.");
+    }
   };
-
-
+  // $scope.addImage1 = function () {
+  //   addImage('encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToyqM2gcwH1vXUwN0vOMsl24f8Yns7Y-H-rFbssDUOVBQUeREYOA');
+  // };
 
   $scope.confirmClear = function () {
     if (confirm('Are you sure?')) {
