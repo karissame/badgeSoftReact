@@ -28,7 +28,8 @@ export default class Layout extends React.Component {
     if (this.state.loggedIn) {
       this.setState({
         loggedIn: false,
-        page: 'home'
+        page: 'home',
+        alert:''
       });
     } else {
       axios.post('/login', loginObj)
@@ -40,7 +41,11 @@ export default class Layout extends React.Component {
               loggedIn: true,
               user: response.data.user
             });
-          }
+        } else {
+            self.setState({
+                alert: response.data.alert
+            });
+        }
         })
         .catch(function (error) {
           console.log(error);
@@ -62,7 +67,7 @@ export default class Layout extends React.Component {
   }
 
   renderHeader() {
-    return <Header login={(a) => this.login(a)} user={this.state.user} loggedIn={this.state.loggedIn}
+    return <Header login={(a) => this.login(a)} user={this.state.user} loggedIn={this.state.loggedIn} alert={this.state.alert}
                    changePage={(a) => this.changePage(a)}/>;
   }
 

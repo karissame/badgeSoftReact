@@ -125,17 +125,17 @@ app.post("/login",function(req,res){
                 bcrypt.compare(password,user[0].password, function(err,loginresult)               {
                     // console.log("res compare",res);
                     if(loginresult){
-                        console.log("passwords match");
-                        console.log("user object is: "+user[0]);
+                        // console.log("passwords match");
+                        // console.log("user object is: "+user[0]);
                         res.json({login:true,user:user[0]});
                     } else {
-                        console.log("passwords don't match");
-                        res.json({login:false});
+                        // console.log("passwords don't match");
+                        res.json({login:false,alert:"username or password incorrect"});
                     }
                 });
             } else {
-                        console.log('failed to login');
-                        res.send({login:false});
+                        // console.log('failed to login');
+                        res.send({login:false,alert:"username or password incorrect"});
                     }
 
                 })

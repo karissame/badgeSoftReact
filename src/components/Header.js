@@ -64,7 +64,7 @@ export default class Header extends React.Component {
               />
             </label>
             <input type="submit" value="Submit"/>
-          </form>
+          </form><div className="alert alert-info" role="alert">{this.props.alert}</div>
           </div>
         );
         }
