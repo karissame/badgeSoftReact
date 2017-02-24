@@ -198,6 +198,9 @@ function addAccessors($scope) {
       y: 245
     }], {left: coord.left, top: coord.top, fill: '#00ade6', opacity: 1}));
   };
+
+
+ // **************TEXT BOX STUFF****************
   $scope.addText = function (text) {
     var text = "New Text";
     var textSample = new fabric.Text(text, {
@@ -213,6 +216,25 @@ function addAccessors($scope) {
     });
     canvas.add(textSample);
   };
+
+  // *****************field names to text box
+  $scope.pushvaluetotextbox = function (value) {
+      var text = value;
+      var fieldText = new fabric.Text(text, {
+      left: 192,
+      top: 450,
+      fontFamily: 'helvetica',
+      fill: '#000' + getRandomColor(),
+      scaleX: 0.5,
+      scaleY: 0.5,
+      fontWeight: '',
+      originX: 'center',
+      centerTransform: true
+    });
+      canvas.add(fieldText)
+  };
+
+
   var addShape = function (shapeName) {
     console.log('adding shape', shapeName);
     var coord = getRandomLeftTop();
@@ -255,6 +277,8 @@ function addAccessors($scope) {
   //   addImage('encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToyqM2gcwH1vXUwN0vOMsl24f8Yns7Y-H-rFbssDUOVBQUeREYOA');
   // };
 
+
+
   $scope.confirmClear = function () {
     if (confirm('Are you sure?')) {
       canvas.clear();
@@ -295,21 +319,6 @@ function addAccessors($scope) {
     });
   };
 
-    // $scope.rasterizeJSON = function () {
-    //    var design = JSON.stringify(canvas);
-    //    var userid = 1;
-    //     $http.post('/saveDesign', design, userid).
-    //   success(function(data, status, headers, config) {
-    //       // this callback will be called asynchronously
-    //       // when the response is available
-    //       console.log(data);
-    //     }).
-    //     error(function(data, status, headers, config) {
-    //       // called asynchronously if an error occurs
-    //       // or server returns response with an error status.
-    //     });
-    //   alert("I might have sent the json file.");
-    // };
     $scope.getSelected = function () {
       return canvas.getActiveObject();
     };
@@ -709,6 +718,7 @@ function addAccessors($scope) {
 
     canvas.on('object:selected', updateScope).on('group:selected', updateScope).on('path:created', updateScope).on('selection:cleared', updateScope);
   }
+
 
   kitchensink.controller('CanvasControls', function ($scope) {
     $scope.canvas = canvas;

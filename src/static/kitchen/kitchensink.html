@@ -180,11 +180,14 @@
                 </div>
                 <!--<div id="text-wrapper" style="margin-top: 10px" ng-show="getText()"> ************* use this one if you want it to hide-->
                 <div style="float:left">
-                    <p><b>Field Names:</b>
-                        <select id="fieldNames">
-                            <option value="" selected>Select</option>
-                        </select>
-                    </p>
+<!--****************FIELD NAMES NOT WORKING***********************-->
+<!--****************LOOK AT CONTROLLERJS LINE 203************-->
+                    <!--<p><b>Field Names:</b>-->
+                        <!--<select id="fieldNames" ng-change="addText();">-->
+                            <!--<option value="" selected="" class="ng-binding">Select from these fields</option>-->
+                            <!--<option ng-selected="<fname>">First Name</option>-->
+                        <!--</select>-->
+                    <!--</p>-->
                     <p><b>Employee Picture:</b>
                         <button type="button" class="btn rect" ng-click="databasesource()">Placeholder</button>
                     </p>
@@ -373,14 +376,14 @@
 
 //    });
 
-(function() {
-          var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
-          var frameQueryString = document.location.href.split("columns=")[1];
-          if (frameQueryString != undefined) {
-          document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
-        }
-        })();
-    });
+//(function() {
+//          var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
+//          var frameQueryString = document.location.href.split("columns=")[1];
+//          if (frameQueryString != undefined) {
+//          document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
+//        }
+//        })();
+//    });
 </script>
 
 </body>
