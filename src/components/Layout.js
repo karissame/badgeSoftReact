@@ -62,10 +62,6 @@ export default class Layout extends React.Component {
     }
   }
 
-  renderCardEditor() {
-    return <CardEditor />;
-  }
-
   renderHeader() {
     return <Header login={(a) => this.login(a)} user={this.state.user} loggedIn={this.state.loggedIn} alert={this.state.alert}
                    changePage={(a) => this.changePage(a)}/>;
@@ -85,7 +81,7 @@ export default class Layout extends React.Component {
     if (this.state.page == "home") {
       return <Profile user={this.state.user} loggedIn={this.state.loggedIn}/>;
     } else if (this.state.page == "editor") {
-      return <CardEditor />;
+      return <CardEditor user={this.state.user} />;
     }
   }
 

@@ -171,6 +171,58 @@ app.post('/checkConnection', function(req,res) {
     })
 });
 
+// **************************
+app.post('/getColumns', function(req,res) {
+    console.log('checking columns for this connection:');
+    var table = req.body.data.dbtable;
+    var userknex = require('knex')({
+      client: req.body.data.client,
+      connection: req.body.data.connection,
+    });
+    userknex(table).columnInfo()
+      .asCallback(function(err,results)    {
+        if (err)    {
+            res.send({success:false,message:err.message});
+            }
+        else{
+            console.log(results);
+            res.send({success:true,message:results});
+        }
+    })
+});
+
+
+// **************************
+app.post('/saveDesign', function(req,res) {
+    console.log('received card design to server');
+    var designid = req.body.data.designid;
+    var design = req.body.data.design;
+    var userid = req.body.data.userid;
+    if (designid) {
+        knex('designs').update({design:design}).where('designid',designid)
+          .asCallback(function(err,results)    {
+            if (err)    {
+                res.send({success:false,message:err.message});
+                }
+            else{
+                console.log(results);
+                res.send({success:true,message:results});
+            }
+        })
+    } else {
+    knex('designs').insert({designid:designid, userid:userid, design:design})
+      .asCallback(function(err,results)    {
+        if (err)    {
+            res.send({success:false,message:err.message});
+            }
+        else{
+            console.log(results);
+            res.send({success:true,message:results});
+        }
+      })
+    }
+});
+
 
 // **************************
 app.post("/register", function(req,res) {
