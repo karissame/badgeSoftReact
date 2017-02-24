@@ -71,18 +71,16 @@ UserClass.prototype.register = function(callback) {
             if (err)    {
                 return console.error(err);
             }
-            console.log("logging knex user return"+rows);
-            console.log("done logging user");
             // if user found
-            if (typeof rows !== "undefined" && typeof rows.username==="string" && rows.username !== rows.username ) {
-                if (rows.username[0].username)  {
-                    console.log("username already exists, username: " + rows.username);
+            if (typeof rows[0] !== "undefined" && typeof rows[0].username==="string") {
+                if (rows[0].username)  {
+                    console.log("username already exists, username: " + rows[0].username);
                     callback({success:false,message:'user not saved'});
                 }
             var err = new Error();
             err.status = 310;
             console.log('Signup error', err.message);
-            callback({success:false,message:'user not saved'});
+            // callback({success:false,message:'user not saved'});
             }
             // save user
             else {
@@ -195,7 +193,7 @@ app.post('/getColumns', function(req,res) {
 // **************************
 app.post('/saveDesign', function(req,res) {
     console.log('received card design to server');
-    var designid = req.body.data.designid;
+    var designid = req.body.data.designid || "";
     var design = req.body.data.design;
     var userid = req.body.data.userid;
     if (designid) {
@@ -228,25 +226,23 @@ app.post('/saveDesign', function(req,res) {
 app.post("/register", function(req,res) {
     console.log("starting registration");
     var newUser = new UserClass();
-    console.log("created new user");
-    console.log(newUser);
-    newUser.fname = req.body.fname;
-    newUser.lname = req.body.lname;
-    newUser.username = req.body.username;
-    newUser.imageurl = req.body.imageurl;
+    console.log(req.body)
+    newUser.fname = req.body.data.fname;
+    newUser.lname = req.body.data.lname;
+    newUser.username = req.body.data.username;
+    newUser.imageurl = req.body.data.imageurl;
     var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(req.body.password, salt);
+    var hash = bcrypt.hashSync(req.body.data.password, salt);
     newUser.password = hash;
     console.log("Password is " + newUser.password);
     console.log("about to register this user info:");
     console.log(newUser);
     newUser.register(function(response){
-        console.log("user created");
         console.log(response);
         if(response.success){
-            res.send("all good");
+            res.send({success:true,message:"all good"});
         } else {
-            res.send("already exists");
+            res.send({success:false,message:'user not saved'});
         }
     });
 });

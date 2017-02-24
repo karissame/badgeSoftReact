@@ -11,7 +11,8 @@ export default class Register extends React.Component {
             lname:'',
             password:'',
             passconfirm:'',
-            imageurl:''
+            imageurl:'',
+            alert:''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,6 +26,7 @@ export default class Register extends React.Component {
     }
 
     handleSubmit(event) {
+        var self=this;
     //   console.log('A form was submitted with value',event.value);
       if (this.state.password === this.state.passconfirm) {
           if (this.state.passconfirm && this.state.username && this.state.fname && this.state.lname) {
@@ -36,15 +38,24 @@ export default class Register extends React.Component {
                   password:this.state.password,
               };
           } else {
-              this.setState({
+              self.setState({
                   alert:"Only picture is optional"
               });
           }
           console.log("Getting ready to post to server");
           console.log(user);
-          axios.post('/register', {body:user})
+          axios.post('/register', {data:user})
             .then(function (response) {
-                // console.log(response);
+                console.log("received results from server:")
+                console.log(response);
+                if (response.data.success) {
+                    console.log("Going to redirect");
+                    self.props.changePage("home");
+                } else {
+                    self.setState({
+                        alert:"Username already exists"
+                    });
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -52,7 +63,7 @@ export default class Register extends React.Component {
 
       } else {
             //   console.log("Both passwords must match. Please correct and resubmit");
-              this.setState({alert:"Both passwords must match. Please correct and resubmit"});
+              self.setState({alert:"Both passwords must match. Please correct and resubmit"});
           }
       event.preventDefault();
   }
@@ -61,7 +72,7 @@ export default class Register extends React.Component {
         console.log("in register element");
         return(
             <div className="row">
-            <form id="updateform" onSubmit={this.handleSubmit} >
+            <form id="registerform" onSubmit={this.handleSubmit} >
               <div id="profile" className="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-2">
                   <h2>Profile Details</h2>
                   <h3 id="username">Username:&nbsp; &nbsp; </h3><input value={this.state.username} onChange={this.handleChange.bind(this,'username')} /><br />
@@ -70,7 +81,7 @@ export default class Register extends React.Component {
                   <h3 id="pass">Password:&nbsp; &nbsp; </h3><input value={this.state.password} onChange={this.handleChange.bind(this,'password')} /><br />
                   <h3 id="passconfirm">Password:&nbsp; &nbsp; </h3><input value={this.state.passconfirm} onChange={this.handleChange.bind(this,'passconfirm')} /><br />
                   <h3 id="imgUrl">Image Url:&nbsp; &nbsp;</h3><input value={this.state.imageurl} onChange={this.handleChange.bind(this,'imageurl')} /><br />
-                  <div className="alert alert-info" role="alert">{this.state.dbalert}</div>
+                  <div className="alert alert-info" role="alert">{this.state.alert}</div>
                   <input type="submit" value="Submit" />
               </div>
               </form>

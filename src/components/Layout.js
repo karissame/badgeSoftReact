@@ -57,7 +57,7 @@ export default class Layout extends React.Component {
   changePage(page) {
     console.log("changing page");
     console.log(page);
-    if (this.state.loggedIn || page == "register") {
+    if (this.state.loggedIn || page == "register" || page=="home") {
       this.setState({
         page: page
       });
@@ -85,7 +85,7 @@ export default class Layout extends React.Component {
     } else if (this.state.page == "editor") {
       return <CardEditor user={this.state.user} />;
     } else if (this.state.page == "register") {
-      return <Register />;
+      return <Register changePage={(a) => this.changePage(a)} />;
     }
   }
 
