@@ -226,10 +226,10 @@ app.post('/saveDesign', function(req,res) {
 
 // **************************
 app.post("/register", function(req,res) {
-    console.log("starting registration");
+    // console.log("starting registration");
     var newUser = new UserClass();
-    console.log("created new user");
-    console.log(newUser);
+    // console.log("created new user");
+    // console.log(newUser);
     newUser.fname = req.body.fname;
     newUser.lname = req.body.lname;
     newUser.username = req.body.username;
@@ -237,12 +237,12 @@ app.post("/register", function(req,res) {
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(req.body.password, salt);
     newUser.password = hash;
-    console.log("Password is " + newUser.password);
-    console.log("about to register this user info:");
-    console.log(newUser);
+    // console.log("Password is " + newUser.password);
+    // console.log("about to register this user info:");
+    // console.log(newUser);
     newUser.register(function(response){
-        console.log("user created");
-        console.log(response);
+        // console.log("user created");
+        // console.log(response);
         if(response.success){
             res.send("all good");
         } else {
@@ -253,24 +253,24 @@ app.post("/register", function(req,res) {
 
 // **************************
 app.post("/updateuser", function(req,res) {
-    console.log("starting registration in server");
+    // console.log("starting registration in server");
     var newUser = req.body.user;
-    console.log("received these user values from react");
-    console.log(newUser);
+    // console.log("received these user values from react");
+    // console.log(newUser);
     if (req.body.user.password) {
         var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(req.body.user.password, salt);
         newUser.password = hash;
-        console.log("Password is " + newUser.password);
+        // console.log("Password is " + newUser.password);
     }
-    console.log("about to register this user info:");
-    console.log(newUser);
+    // console.log("about to register this user info:");
+    // console.log(newUser);
     knex('user').where('username',newUser.username).update(newUser)
         .asCallback(function(err,user)    {
             if (err)    {
                 return console.error(err);
             }
-            console.log(user);
+            // console.log(user);
             if (user)    {
                 res.send("update success");
             } else {
@@ -282,7 +282,7 @@ app.post("/updateuser", function(req,res) {
 // **************************
 // universal routing and rendering
 app.get('*', (req, res) => {
-    console.log("req.url: "  + req.url);
+    // console.log("req.url: "  + req.url);
     match(
     { routes, location: req.url },
     (err, redirectLocation, renderProps) => {
@@ -291,7 +291,7 @@ app.get('*', (req, res) => {
       if (err) {
         return res.status(500).send(err.message);
       }
-      console.log("redirecting to :",redirectLocation);
+    //   console.log("redirecting to :",redirectLocation);
       // in case of redirect propagate the redirect to the browser
       if (redirectLocation) {
         return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
@@ -322,5 +322,5 @@ server.listen(port, err => {
   if (err) {
     return console.error(err);
   }
-  console.info("Server running on http://localhost:${port} [${env}]");
+  // console.info("Server running on http://localhost:${port} [${env}]");
 });

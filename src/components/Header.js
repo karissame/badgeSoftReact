@@ -25,7 +25,7 @@ export default class Header extends React.Component {
 
     handleSubmit(event) {
     event.preventDefault();
-    console.log("handle submit is running this");
+    // console.log("handle submit is running this");
       var loginObj = {
           "username":this.state.value.username,
           "password":this.state.value.password
@@ -33,7 +33,7 @@ export default class Header extends React.Component {
       this.setState({
           value:loginObj
       });
-      console.log(loginObj);
+    //   console.log(loginObj);
       this.props.login(this.state.value)
     }
 

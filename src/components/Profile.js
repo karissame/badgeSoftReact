@@ -5,8 +5,8 @@ import axios from "axios";
 export default class Profile extends React.Component {
     constructor() {
         super();
-        console.log("props:")
-        console.log(this.props);
+        // console.log("props:")
+        // console.log(this.props);
         this.state={
             edit:false,
             username:'',
@@ -20,8 +20,8 @@ export default class Profile extends React.Component {
         this.checkConnection = this.checkConnection.bind(this);
     }
     makeInput() {
-        console.log("in makeInput");
-        console.log(this);
+        // console.log("in makeInput");
+        // console.log(this);
         var connection = JSON.parse(this.props.user.connection);
         this.setState({
             edit:true,
@@ -36,8 +36,8 @@ export default class Profile extends React.Component {
             dbselected:connection.database,
             dbtable:this.props.user.dbtable
         });
-        console.log(this.state);
-        console.log("Should be re-rendered as inputs now");
+        // console.log(this.state);
+        // console.log("Should be re-rendered as inputs now");
     }
     checkConnection(field,event) {
         var data = {
@@ -53,7 +53,7 @@ export default class Profile extends React.Component {
         var self = this;
         axios.post('/checkConnection', {data:data})
         .then(function (response) {
-            console.log(response.data.message);
+            // console.log(response.data.message);
             self.setState({dbalert:response.data.message});
         })
         .catch(function (error) {
@@ -69,13 +69,13 @@ export default class Profile extends React.Component {
     }
 
     handleSubmit(event) {
-      console.log('A form was submitted with value',event.value);
+    //   console.log('A form was submitted with value',event.value);
       if (event.value == "Cancel") {
           this.setState({edit:false});
       } else {
       if (this.state.password === this.state.passconfirm) {
           if (this.state.passconfirm || this.state.passconfirm) {
-              console.log("Password change accepted. Both inputs match");
+            //   console.log("Password change accepted. Both inputs match");
               var passChange = true;
           }
           if (passChange) {
@@ -95,7 +95,7 @@ export default class Profile extends React.Component {
                 })
               };
           } else {
-              console.log("Password is not being changed");
+            //   console.log("Password is not being changed");
               var user = {
                   username:this.state.username,
                   fname:this.state.fname,
@@ -110,18 +110,18 @@ export default class Profile extends React.Component {
                       database:this.state.dbselected
               })
           };}
-          console.log("Getting ready to post to server");
-          console.log(user);
+        //   console.log("Getting ready to post to server");
+        //   console.log(user);
           axios.post('/updateuser', {user:user})
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             });
 
       } else {
-              console.log("Both passwords must match. Please correct and resubmit");
+            //   console.log("Both passwords must match. Please correct and resubmit");
               alert("Both passwords must match. Please correct and resubmit");
           }
       this.setState({edit:false});

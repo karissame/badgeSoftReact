@@ -24,7 +24,7 @@ export default class Layout extends React.Component {
 
   login(loginObj) {
     const self = this;
-    console.log("in login");
+    // console.log("in login");
     if (this.state.loggedIn) {
       this.setState({
         loggedIn: false,
@@ -34,8 +34,8 @@ export default class Layout extends React.Component {
     } else {
       axios.post('/login', loginObj)
         .then(function (response) {
-          console.log("Got data back from the server");
-          console.log(response);
+        //   console.log("Got data back from the server");
+        //   console.log(response);
           if (response.data.login) {
             self.setState({
               loggedIn: true,
@@ -54,7 +54,7 @@ export default class Layout extends React.Component {
   }
 
   changePage(page) {
-    console.log("changing page");
+    // console.log("changing page");
     if (this.state.loggedIn) {
       this.setState({
         page: page
@@ -76,8 +76,8 @@ export default class Layout extends React.Component {
   }
 
   renderSelected() {
-    console.log("about to render main content block. this.state.page=");
-    console.log(this.state.page);
+    // console.log("about to render main content block. this.state.page=");
+    // console.log(this.state.page);
     if (this.state.page == "home") {
       return <Profile user={this.state.user} loggedIn={this.state.loggedIn}/>;
     } else if (this.state.page == "editor") {
