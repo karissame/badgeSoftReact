@@ -2,16 +2,35 @@ import React from "react";
 import {Link} from 'react-router';
 import axios from "axios";
 
+// var isUrlValid = function (userInput) {
+//   var regexQuery = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$";
+//   var url = new RegExp(regexQuery, "i");
+//   if (url.test(userInput)) {
+//     // alert('valid url: ' + userInput);
+//     return true;
+//   }
+//   // alert('invalid url: ' + userInput);
+//   return false;
+// };
+var isUrlValid = function (userInput) {
+  var regexQuery = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$";
+  var url = new RegExp(regexQuery, "i");
+  if (userInput) {
     if (url.test(userInput)) {
+      // alert('valid url: ' + userInput);
       return true;
     }
+    // alert('invalid url: ' + userInput);
     return false;
   };
+};
+
 
 export default class Register extends React.Component {
   constructor() {
     super();
     this.state = {
+      defaultimageurl: '/img/defaultprofilepic.jpeg',
       fname: '',
       lname: '',
       password: '',
@@ -37,7 +56,12 @@ export default class Register extends React.Component {
       if (this.state.passconfirm && this.state.username && this.state.fname && this.state.lname) {
         console.log("Password length is: ");
         console.log(this.state.password.length);
+        if (this.state.password.length < 8) {
           alert("Password not long enough...must be 8 characters");
+        } else if (isUrlValid(this.state.imageurl) == false) {
+          alert("Image URL is invalid, check to see if it is correct and try again.")
+        }
+        else {
           var user = {
             username: this.state.username,
             fname: this.state.fname,
