@@ -2,14 +2,9 @@ import React from "react";
 import {Link} from 'react-router';
 import axios from "axios";
 
-var isUrlValid = function(userInput) {
-    var regexQuery = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$";
-    var url = new RegExp(regexQuery, "i");
     if (url.test(userInput)) {
-      alert('valid url: ' + userInput);
       return true;
     }
-    alert('invalid url: ' + userInput);
     return false;
   };
 
@@ -17,7 +12,6 @@ export default class Register extends React.Component {
   constructor() {
     super();
     this.state = {
-      defaultimageurl: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToyqM2gcwH1vXUwN0vOMsl24f8Yns7Y-H-rFbssDUOVBQUeREYOA',
       fname: '',
       lname: '',
       password: '',
@@ -43,9 +37,7 @@ export default class Register extends React.Component {
       if (this.state.passconfirm && this.state.username && this.state.fname && this.state.lname) {
         console.log("Password length is: ");
         console.log(this.state.password.length);
-        if (this.state.password.length < 8 == false || isUrlValid(this.state.imageurl) == false) {
           alert("Password not long enough...must be 8 characters");
-        } else {
           var user = {
             username: this.state.username,
             fname: this.state.fname,
