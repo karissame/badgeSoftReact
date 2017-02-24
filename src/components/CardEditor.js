@@ -41,10 +41,11 @@ export default class CardEditor extends React.Component {
             //   console.log(self.state.columns);
           }
       })
-
+      var columnarr = JSON.stringify(self.state.columns);
+      console.log(columnarr);
       return (
         <div>
-          <iframe id="kitchensinkiframe" className="kitchensink" title={self.state.columns} src={`/kitchen/kitchensink.html`}/>
+          <iframe id="kitchensinkiframe" className="kitchensink" src={'/kitchen/kitchensink.html?columns='+columnarr}/>
         </div>
       );
   };

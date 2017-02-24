@@ -183,7 +183,7 @@ export default class Profile extends React.Component {
             <div className="row">
             <div id="updateform">
               <div id="profile" className="col-xs-8 col-xs-offset-2">
-                  <h1>Log in to continue</h1>
+                  <h1>Log in to continue or <button name="register" value="register" onClick={(e) => this.props.changePage("register")}>Register</button></h1>
               </div>
             </div>
             </div>

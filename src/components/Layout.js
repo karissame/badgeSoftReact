@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from 'react-router';
 import Header from "./Header";
 import Footer from "./Footer";
+import Register from "./Register";
 import Profile from "./Profile";
 import CardEditor from "./CardEditor";
 import axios from 'axios';
@@ -54,8 +55,9 @@ export default class Layout extends React.Component {
   }
 
   changePage(page) {
-    // console.log("changing page");
-    if (this.state.loggedIn) {
+    console.log("changing page");
+    console.log(page);
+    if (this.state.loggedIn || page == "register") {
       this.setState({
         page: page
       });
@@ -76,12 +78,14 @@ export default class Layout extends React.Component {
   }
 
   renderSelected() {
-    // console.log("about to render main content block. this.state.page=");
-    // console.log(this.state.page);
+    console.log("about to render main content block. this.state.page=");
+    console.log(this.state.page);
     if (this.state.page == "home") {
-      return <Profile user={this.state.user} loggedIn={this.state.loggedIn}/>;
+      return <Profile user={this.state.user} loggedIn={this.state.loggedIn} changePage={(a) => this.changePage(a)}/>;
     } else if (this.state.page == "editor") {
       return <CardEditor user={this.state.user} />;
+    } else if (this.state.page == "register") {
+      return <Register />;
     }
   }
 

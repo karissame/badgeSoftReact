@@ -59,7 +59,7 @@ var UserClass = function()  {
     this.lname = "";
     this.username = "";
     this.password = "";
-    this.imageUrl = "";
+    this.imageurl = "";
 };
 
 UserClass.prototype.register = function(callback) {
@@ -89,10 +89,10 @@ UserClass.prototype.register = function(callback) {
                     // "this" instead of user to pass in
                     console.log("user was not found in query. About to log user then insert");
                     console.log(tryingThis.fname);
-                    if (!tryingThis.imageUrl) {
-                        tryingThis.imageUrl = "https://www.carthage.edu/themes/toph/assets/img/generic-logo.png";
+                    if (!tryingThis.imageurl) {
+                        tryingThis.imageurl = "https://www.carthage.edu/themes/toph/assets/img/generic-logo.png";
                     }
-                    knex('user').insert({fname:tryingThis.fname,lname:tryingThis.lname,username:tryingThis.username,password:tryingThis.password,imageUrl:tryingThis.imageUrl})
+                    knex('user').insert({fname:tryingThis.fname,lname:tryingThis.lname,username:tryingThis.username,password:tryingThis.password,imageurl:tryingThis.imageurl})
                     .asCallback(function(err,user)    {
                         if (err)    {
                             console.log('Signup error', err.message);
@@ -226,23 +226,23 @@ app.post('/saveDesign', function(req,res) {
 
 // **************************
 app.post("/register", function(req,res) {
-    // console.log("starting registration");
+    console.log("starting registration");
     var newUser = new UserClass();
-    // console.log("created new user");
-    // console.log(newUser);
+    console.log("created new user");
+    console.log(newUser);
     newUser.fname = req.body.fname;
     newUser.lname = req.body.lname;
     newUser.username = req.body.username;
-    newUser.imageUrl = req.body.imageUrl;
+    newUser.imageurl = req.body.imageurl;
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(req.body.password, salt);
     newUser.password = hash;
-    // console.log("Password is " + newUser.password);
-    // console.log("about to register this user info:");
-    // console.log(newUser);
+    console.log("Password is " + newUser.password);
+    console.log("about to register this user info:");
+    console.log(newUser);
     newUser.register(function(response){
-        // console.log("user created");
-        // console.log(response);
+        console.log("user created");
+        console.log(response);
         if(response.success){
             res.send("all good");
         } else {
