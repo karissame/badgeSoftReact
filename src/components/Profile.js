@@ -155,7 +155,7 @@ export default class Profile extends React.Component {
                               onBlur={this.checkConnection.bind(this,'dbtable')} onChange={this.handleChange.bind(this,'dbselected')} /><br />
                               <h3 id="dbtable">Table to Use:&nbsp; &nbsp; </h3><input value={this.state.dbtable} onBlur={this.checkConnection.bind(this,'dbtable')} onChange={this.handleChange.bind(this,'dbtable')} />
                               <br />
-                              <div id="expiring" className="alert alert-info" role="alert">{this.state.dbalert}</div>
+                              <div className="alert alert-info" role="alert">{this.state.dbalert}</div>
                               <input type="submit" value="Submit" />
                               <input type="submit" value="Cancel" />
                           </div>
