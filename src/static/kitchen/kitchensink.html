@@ -1,255 +1,293 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="kitchensink">
 <head>
-<meta charset="utf-8">
-<title>placeholder</title>
-<link rel="stylesheet" href="master.css">
-<link rel="stylesheet" href="prism.css">
-<style>pre{margin-left:15px!important}</style>
-<style>.thumb{height:165px;border:1px solid #000;margin:1px 1px 10px 40px;}</style>
-<!--[if lt IE 9]>
-      <script src="excanvas.js"></script>
+    <meta charset="utf-8">
+    <title>placeholder</title>
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="prism.css">
+    <style>pre {
+        margin-left: 15px !important
+    }</style>
+    <style>.thumb {
+        height: 165px;
+        border: 1px solid #000;
+        margin: 1px 1px 10px 40px;
+    }</style>
+    <!--[if lt IE 9]>
+    <script src="excanvas.js"></script>
     <![endif]-->
-<script src="fabric.js"></script>
-<script src="angular.min.js"></script>
-<script type='text/javascript'>//<![CDATA[ 
+    <script src="fabric.js"></script>
+    <script src="angular.min.js"></script>
+    <script type='text/javascript'>//<![CDATA[
 
-function draw(ev) {
-    console.log(ev);
-    var ctx = document.getElementById('canvas').getContext('2d'),
-        img = new Image(),
-        f = document.getElementById("uploadimage").files[0],
-        url = window.URL || window.webkitURL,
-        src = url.createObjectURL(f);
+    function draw(ev) {
+        console.log(ev);
+        var ctx = document.getElementById('canvas').getContext('2d'),
+            img = new Image(),
+            f = document.getElementById("uploadimage").files[0],
+            url = window.URL || window.webkitURL,
+            src = url.createObjectURL(f);
 
-    img.src = src;
-    img.onload = function() {
-        ctx.drawImage(img, 0, 0);
-        url.revokeObjectURL(src);
+        img.src = src;
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+            url.revokeObjectURL(src);
+        }
     }
-}
 
-document.getElementById("uploadimage").addEventListener("change", draw, false)
-//]]>  
+    document.getElementById("uploadimage").addEventListener("change", draw, false)
+    //]]>
 
-</script>
+    </script>
 </head>
 <body bgcolor="black">
 <script>
-var imageLoader = document.getElementById('imageLoader');
-imageLoader.addEventListener('change', handleImage, false);
+    var imageLoader = document.getElementById('imageLoader');
+    imageLoader.addEventListener('change', handleImage, false);
 
-function handleImage(e) {
-    var reader = new FileReader();
-    reader.onload = function (event) {
-        var img = new Image();
-        img.onload = function () {
-            var imgInstance = new fabric.Image(img, {
-                scaleX: 0.2,
-                scaleY: 0.2
-            })
-            canvas.add(imgInstance);
+    function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = new Image();
+            img.onload = function () {
+                var imgInstance = new fabric.Image(img, {
+                    scaleX: 0.2,
+                    scaleY: 0.2
+                })
+                canvas.add(imgInstance);
+            }
+            img.src = event.target.result;
         }
-        img.src = event.target.result;
+        reader.readAsDataURL(e.target.files[0]);
     }
-    reader.readAsDataURL(e.target.files[0]);
-}
 </script>
 <script>
-(function() {
+    (function () {
 
-  if (document.location.hostname === 'localhost') {
-    var links = document.getElementById('header').getElementsByTagName('a');
-    for (var i = 0, len = links.length; i < len; i++) {
-      // very retarted fix but fuck it
-      links[i].href = links[i].href.replace('fabricjs.com', 'localhost:4000');
-    }
-  }
-  else {
-    var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-    s.async = true;
-    s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-    t.parentNode.insertBefore(s, t);
-
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-  }
-})();
-</script>
-<script type='text/javascript'> 
-
-function handleImage(e){
-    var reader = new FileReader();
-    reader.onload = function(event){
-        var img = new Image();
-        img.onload = function(){
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img,0,0);
+        if (document.location.hostname === 'localhost') {
+            var links = document.getElementById('header').getElementsByTagName('a');
+            for (var i = 0, len = links.length; i < len; i++) {
+                // very retarted fix but fuck it
+                links[i].href = links[i].href.replace('fabricjs.com', 'localhost:4000');
+            }
         }
-        img.src = event.target.result;
+        else {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+
+            !function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, "script", "twitter-wjs");
+        }
+    })();
+</script>
+<script type='text/javascript'>
+
+    function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = new Image();
+            img.onload = function () {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+            }
+            img.src = event.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
     }
-    reader.readAsDataURL(e.target.files[0]);     
-}
- canvas.add(imageLoader);
-}); 
+    canvas.add(imageLoader);
+    })
+    ;
 
 </script>
 <div id="bd-wrapper" ng-controller="CanvasControls">
-<!--[if IE]><script src="../lib/fonts/Delicious.font.js"></script><![endif]-->
-<script src="bootstrap.js"></script>
-<link rel="stylesheet" href="bootstrap.css">
-<link rel="stylesheet" href="kitchensink.css">
-<link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>
-<div style="position:relative;width:400px;height:650px;float:left;" id="canvas-wrapper">
-<div id="canvas-controls">
-</div>
-<output id="list"></output>
-<canvas id="canvas" width="384" height="610"></canvas>
+    <!--[if IE]>
+    <script src="../lib/fonts/Delicious.font.js"></script><![endif]-->
+    <script src="bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="kitchensink.css">
+    <link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>
+    <div style="position:relative;width:400px;height:650px;float:left;" id="canvas-wrapper">
+        <div id="canvas-controls">
+        </div>
+        <output id="list"></output>
+        <canvas id="canvas" width="384" height="610"></canvas>
 
-</div>
-
-
-<div id="commands" ng-click="maybeLoadShape($event)">
-
-<div class="tab-content">
-
-<div class="tab-pane active" id="simple-shapes">
-<p>Add <strong>shapes</strong> to canvas:<label for="color" style="margin-left:10px">Color: </label>
-<input type="color" style="width:40px" bind-value-to="fill"></p>
-
-<button type="button" class="btn rect" ng-click="addRect()">Rectangle</button>
-<button type="button" class="btn circle" ng-click="addCircle()">Circle</button>
-<button type="button" class="btn triangle" ng-click="addTriangle()">Triangle</button>
-<button type="button" class="btn line" ng-click="addLine()">Line</button>
-<button type="button" class="btn polygon" ng-click="addPolygon()">Polygon</button>
-<!--****************ADD IMAGE***************-->
-    <br><p style="margin-top: 10px;"><b>Add Image or map:</b>
-<input type="file" id="imgLoader"></p>
-
-<b>Controls/Export:</b><br>
-<button class="btn btn-object-action" id="remove-selected" ng-click="removeSelected()">
-Remove selected object/group
-</button><button id="gradientify" class="btn btn-object-action" ng-click="gradientify()">Gradientify</button><button id="shadowify" class="btn btn-object-action" ng-click="shadowify()">Shadowify</button>
-<br>
-<button id="send-backwards" class="btn btn-object-action" ng-click="sendBackwards()">Send backwards</button><button id="send-to-back" class="btn btn-object-action" ng-click="sendToBack()">Send to back</button><button id="bring-forward" class="btn btn-object-action" ng-click="bringForward()">Bring forwards</button><button id="bring-to-front" class="btn btn-object-action" ng-click="bringToFront()">Bring to front</button>
+    </div>
 
 
-<!--</div>-->
-<div class="tab-pane" id="object-controls-pane">
-<div style="margin-top: 10px;" id="global-controls">
-<p>
-Export canvas as:
-<button class="btn btn-success" id="rasterize" ng-click="rasterize()">
-Image
-</button>
-<button class="btn btn-success" id="rasterize-svg" ng-click="rasterizeSVG()">
-SVG
-</button>
-<button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON()">
-JSON
-</button>
-</p>
+    <div id="commands" ng-click="maybeLoadShape($event)">
 
-</div>
+        <div class="tab-content">
 
-</div>
-    <!--<div id="text-wrapper" style="margin-top: 10px" ng-show="getText()"> ************* use this one if you want it to hide-->
-    <div style="float:left;margin-left: 10px;">
-        <p><b>Employee Picture:</b>
-        <button type="button" class="btn rect" ng-click="databasesource()">Placeholder</button>
-</p>
-<p><b>Text/Label:</b>
-    <button class="btn" ng-click="addText()">Add text</button></p>
-<textarea bind-value-to="text"></textarea><br>
-<div id="text-controls-additional">
-<button type="button" class="btn btn-object-action" ng-click="toggleBold()" ng-class="{'btn-inverse': isBold()}">
-Bold
-</button>
-<button type="button" class="btn btn-object-action" id="text-cmd-italic" ng-click="toggleItalic()" ng-class="{'btn-inverse': isItalic()}">
-Italic
-</button>
-<button type="button" class="btn btn-object-action" id="text-cmd-underline" ng-click="toggleUnderline()" ng-class="{'btn-inverse': isUnderline()}">
-Underline
-</button>
-<button type="button" class="btn btn-object-action" id="text-cmd-linethrough" ng-click="toggleLinethrough()" ng-class="{'btn-inverse': isLinethrough()}">
-Linethrough
-</button>
-<button type="button" class="btn btn-object-action" id="text-cmd-overline" ng-click="toggleOverline()" ng-class="{'btn-inverse': isOverline()}">
-Overline
-</button>
-</div>
-</div>
-<div id="text-wrapper" style="margin-top: 5px; margin-left:10px; position:relative;float:right">
-<div style="margin-left: 0px;" id="text-controls">
-<label for="font-family" style="display:inline-block">Font family:</label>
-<select id="font-family" class="btn-object-action" bind-value-to="fontFamily">
-<option value="arial">Arial</option>
-<option value="helvetica" selected>Helvetica</option>
-<option value="myriad pro">Myriad Pro</option>
-<option value="delicious">Delicious</option>
-<option value="verdana">Verdana</option>
-<option value="georgia">Georgia</option>
-<option value="courier">Courier</option>
-<option value="comic sans ms">Comic Sans MS</option>
-<option value="impact">Impact</option>
-<option value="monaco">Monaco</option>
-<option value="optima">Optima</option>
-<option value="hoefler text">Hoefler Text</option>
-<option value="plaster">Plaster</option>
-<option value="engagement">Engagement</option>
-</select>
-<br>
-<label for="text-align" style="display:inline-block">Text align:</label>
-<select id="text-align" class="btn-object-action" bind-value-to="textAlign">
-<option>Left</option>
-<option>Center</option>
-<option>Right</option>
-<option>Justify</option>
-</select>
-<div>
-<label for="text-bg-color">Background color:</label>
-<input type="color" value="" id="text-bg-color" size="10" class="btn-object-action" bind-value-to="bgColor">
-</div>
-<div>
-<label for="text-lines-bg-color">Background text color:</label>
-<input type="color" value="" id="text-lines-bg-color" size="10" class="btn-object-action" bind-value-to="textBgColor">
-</div>
-<div>
-<label for="text-stroke-color">Stroke color:</label>
-<input type="color" value="" id="text-stroke-color" class="btn-object-action" bind-value-to="strokeColor">
-</div>
-<div>
-<label for="text-font-size">Font size:</label>
-<input type="range" value="" min="1" max="120" step="1" id="text-font-size" class="btn-object-action" bind-value-to="fontSize">
-</div>
-<div>
-<label for="text-line-height">Line height:</label>
-<input type="range" value="" min="0" max="10" step="0.1" id="text-line-height" class="btn-object-action" bind-value-to="lineHeight">
-</div>
-</div>
-    <!--**************************** right side of text edit part-->
+            <div class="tab-pane active" id="simple-shapes">
+                <p>Add <strong>shapes</strong> to canvas:<label for="color" style="margin-left:10px">Color: </label>
+                    <input type="color" style="width:40px" bind-value-to="fill"></p>
 
-</div>
+                <button type="button" class="btn rect" ng-click="addRect()">Rectangle</button>
+                <button type="button" class="btn circle" ng-click="addCircle()">Circle</button>
+                <button type="button" class="btn triangle" ng-click="addTriangle()">Triangle</button>
+                <button type="button" class="btn line" ng-click="addLine()">Line</button>
+                <button type="button" class="btn polygon" ng-click="addPolygon()">Polygon</button>
+                <!--****************ADD IMAGE***************-->
+                <br>
+                <p style="margin-top: 10px;"><b>Add Image or map:</b>
+                    <input type="file" id="imgLoader"></p>
+
+                <b>Controls/Export:</b><br>
+                <button class="btn btn-object-action" id="remove-selected" ng-click="removeSelected()">
+                    Remove selected object/group
+                </button>
+                <button id="gradientify" class="btn btn-object-action" ng-click="gradientify()">Gradientify</button>
+                <button id="shadowify" class="btn btn-object-action" ng-click="shadowify()">Shadowify</button>
+                <br>
+                <button id="send-backwards" class="btn btn-object-action" ng-click="sendBackwards()">Send backwards
+                </button>
+                <button id="send-to-back" class="btn btn-object-action" ng-click="sendToBack()">Send to back</button>
+                <button id="bring-forward" class="btn btn-object-action" ng-click="bringForward()">Bring forwards
+                </button>
+                <button id="bring-to-front" class="btn btn-object-action" ng-click="bringToFront()">Bring to front
+                </button>
 
 
+                <!--</div>-->
+                <div class="tab-pane" id="object-controls-pane">
+                    <div style="margin-top: 10px;" id="global-controls">
+                        <p>
+                            Export canvas as:
+                            <button class="btn btn-success" id="rasterize" ng-click="rasterize()">
+                                Image
+                            </button>
+                            <button class="btn btn-success" id="rasterize-svg" ng-click="rasterizeSVG()">
+                                SVG
+                            </button>
+                            <button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON()">
+                                JSON
+                            </button>
+                        </p>
+
+                    </div>
+
+                </div>
+                <!--<div id="text-wrapper" style="margin-top: 10px" ng-show="getText()"> ************* use this one if you want it to hide-->
+                <div style="float:left;margin-left: 10px;">
+                    <p><b>Column Choices:</b>
+                        <button type="button" class="btn rect" ng-click="databasesource()">Column</button></p>
+                    <p><b>Employee Picture:</b>
+                        <button type="button" class="btn rect" ng-click="databasesource()">Placeholder</button>
+                    </p>
+                    <p><b>Text/Label:</b>
+                        <button class="btn" ng-click="addText()">Add text</button>
+                    </p>
+                    <textarea bind-value-to="text"></textarea><br>
+                    <div id="text-controls-additional">
+                        <button type="button" class="btn btn-object-action" ng-click="toggleBold()"
+                                ng-class="{'btn-inverse': isBold()}">
+                            Bold
+                        </button>
+                        <button type="button" class="btn btn-object-action" id="text-cmd-italic"
+                                ng-click="toggleItalic()" ng-class="{'btn-inverse': isItalic()}">
+                            Italic
+                        </button>
+                        <button type="button" class="btn btn-object-action" id="text-cmd-underline"
+                                ng-click="toggleUnderline()" ng-class="{'btn-inverse': isUnderline()}">
+                            Underline
+                        </button>
+                        <button type="button" class="btn btn-object-action" id="text-cmd-linethrough"
+                                ng-click="toggleLinethrough()" ng-class="{'btn-inverse': isLinethrough()}">
+                            Linethrough
+                        </button>
+                        <button type="button" class="btn btn-object-action" id="text-cmd-overline"
+                                ng-click="toggleOverline()" ng-class="{'btn-inverse': isOverline()}">
+                            Overline
+                        </button>
+                    </div>
+                </div>
+                <div id="text-wrapper" style="margin-top: 5px; margin-left:10px; position:relative;float:right">
+                    <div style="margin-left: 0px;" id="text-controls">
+                        <label for="font-family" style="display:inline-block">Font family:</label>
+                        <select id="font-family" class="btn-object-action" bind-value-to="fontFamily">
+                            <option value="arial">Arial</option>
+                            <option value="helvetica" selected>Helvetica</option>
+                            <option value="myriad pro">Myriad Pro</option>
+                            <option value="delicious">Delicious</option>
+                            <option value="verdana">Verdana</option>
+                            <option value="georgia">Georgia</option>
+                            <option value="courier">Courier</option>
+                            <option value="comic sans ms">Comic Sans MS</option>
+                            <option value="impact">Impact</option>
+                            <option value="monaco">Monaco</option>
+                            <option value="optima">Optima</option>
+                            <option value="hoefler text">Hoefler Text</option>
+                            <option value="plaster">Plaster</option>
+                            <option value="engagement">Engagement</option>
+                        </select>
+                        <br>
+                        <label for="text-align" style="display:inline-block">Text align:</label>
+                        <select id="text-align" class="btn-object-action" bind-value-to="textAlign">
+                            <option>Left</option>
+                            <option>Center</option>
+                            <option>Right</option>
+                            <option>Justify</option>
+                        </select>
+                        <div>
+                            <label for="text-bg-color">Background color:</label>
+                            <input type="color" value="" id="text-bg-color" size="10" class="btn-object-action"
+                                   bind-value-to="bgColor">
+                        </div>
+                        <div>
+                            <label for="text-lines-bg-color">Background text color:</label>
+                            <input type="color" value="" id="text-lines-bg-color" size="10" class="btn-object-action"
+                                   bind-value-to="textBgColor">
+                        </div>
+                        <div>
+                            <label for="text-stroke-color">Stroke color:</label>
+                            <input type="color" value="" id="text-stroke-color" class="btn-object-action"
+                                   bind-value-to="strokeColor">
+                        </div>
+                        <div>
+                            <label for="text-font-size">Font size:</label>
+                            <input type="range" value="" min="1" max="120" step="1" id="text-font-size"
+                                   class="btn-object-action" bind-value-to="fontSize">
+                        </div>
+                        <div>
+                            <label for="text-line-height">Line height:</label>
+                            <input type="range" value="" min="0" max="10" step="0.1" id="text-line-height"
+                                   class="btn-object-action" bind-value-to="lineHeight">
+                        </div>
+                    </div>
+                    <!--**************************** right side of text edit part-->
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
 </div>
 </div>
 
-</div>
-</div>
-</div>
- 
 <script>
-  var kitchensink = { };
-  var canvas = new fabric.Canvas('canvas');
+    var kitchensink = {};
+    var canvas = new fabric.Canvas('canvas');
 </script>
 <script src="utils.js"></script>
 <script src="app_config.js"></script>
 <script src="controller.js"></script>
 </div>
 <script>
-      (function(){
+    (function () {
         var mainScriptEl = document.getElementById('main');
         if (!mainScriptEl) return;
         var preEl = document.createElement('pre');
@@ -258,50 +296,51 @@ Overline
         codeEl.className = 'language-javascript';
         preEl.appendChild(codeEl);
         document.getElementById('bd-wrapper').appendChild(preEl);
-      })();
-    </script>
-<script>
-(function() {
-  fabric.util.addListener(fabric.window, 'load', function() {
-    var canvas = this.__canvas || this.canvas,
-        canvases = this.__canvases || this.canvases;
-
-    canvas && canvas.calcOffset && canvas.calcOffset();
-
-    if (canvases && canvases.length) {
-      for (var i = 0, len = canvases.length; i < len; i++) {
-        canvases[i].calcOffset();
-      }
-    }
-  });
-})();
+    })();
 </script>
 <script>
-document.getElementById('imgLoader').onchange = function handleImage(e) {
-    var reader = new FileReader();
-    reader.onload = function (event) { console.log('fdsf');
-        var imgObj = new Image();
-        imgObj.src = event.target.result;
-        imgObj.onload = function () {
-            // start fabricJS stuff
-            
-            var image = new fabric.Image(imgObj);
-            image.set({
-                left: 250,
-                top: 250,
-                angle: 20,
-                padding: 10,
-                cornersize: 10
-            });
-            //image.scale(getRandomNum(0.1, 0.25)).setCoords();
-            canvas.add(image);
-            
-            // end fabricJS stuff
+    (function () {
+        fabric.util.addListener(fabric.window, 'load', function () {
+            var canvas = this.__canvas || this.canvas,
+                canvases = this.__canvases || this.canvases;
+
+            canvas && canvas.calcOffset && canvas.calcOffset();
+
+            if (canvases && canvases.length) {
+                for (var i = 0, len = canvases.length; i < len; i++) {
+                    canvases[i].calcOffset();
+                }
+            }
+        });
+    })();
+</script>
+<script>
+    document.getElementById('imgLoader').onchange = function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            console.log('fdsf');
+            var imgObj = new Image();
+            imgObj.src = event.target.result;
+            imgObj.onload = function () {
+                // start fabricJS stuff
+
+                var image = new fabric.Image(imgObj);
+                image.set({
+                    left: 250,
+                    top: 250,
+                    angle: 20,
+                    padding: 10,
+                    cornersize: 10
+                });
+                //image.scale(getRandomNum(0.1, 0.25)).setCoords();
+                canvas.add(image);
+
+                // end fabricJS stuff
+            }
+
         }
-        
+        reader.readAsDataURL(e.target.files[0]);
     }
-    reader.readAsDataURL(e.target.files[0]);
-}
 </script>
 </body>
 </html>

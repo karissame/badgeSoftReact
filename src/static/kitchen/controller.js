@@ -272,8 +272,21 @@ function addAccessors($scope) {
     window.open('data:image/svg+xml;utf8,' +
       encodeURIComponent(canvas.toSVG()));
   };
+
   $scope.rasterizeJSON = function () {
-    alert(JSON.stringify(canvas));
+     var badgebatch = JSON.stringify(canvas);
+      $http.post(url, badgebatch).
+    success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log(data);
+      }).
+      error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
+    alert(badgebatch);
+
   };
   $scope.getSelected = function () {
     return canvas.getActiveObject();
