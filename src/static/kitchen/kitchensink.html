@@ -182,19 +182,19 @@
                 <div style="float:left">
 <!--****************FIELD NAMES NOT WORKING***********************-->
 <!--****************LOOK AT CONTROLLERJS LINE 203************-->
-                    <!--<p><b>Field Names:</b>-->
-                        <!--<select id="fieldNames" ng-change="addText();">-->
-                            <!--<option value="" selected="" class="ng-binding">Select from these fields</option>-->
-                            <!--<option ng-selected="<fname>">First Name</option>-->
-                        <!--</select>-->
-                    <!--</p>-->
+                    <p><b>Field Names:</b>
+                        <select id="fieldNames" onChange="$('textarea')[0].value+=value">
+                            <option value="" class="ng-binding">Select from these fields</option>
+                            <option value="<fname>">First Name</option>
+                        </select>
+                    </p>
                     <p><b>Employee Picture:</b>
                         <button type="button" class="btn rect" ng-click="databasesource()">Placeholder</button>
                     </p>
                     <p><b>Text/Label:</b>
                         <button class="btn" ng-click="addText()">Add text</button>
                     </p>
-                    <textarea bind-value-to="text"></textarea><br>
+                    <textarea bind-value-to="text" ></textarea><br>
                     <div id="text-controls-additional">
                         <button type="button" class="btn btn-object-action" ng-click="toggleBold()"
                                 ng-class="{'btn-inverse': isBold()}">

@@ -202,7 +202,7 @@ function addAccessors($scope) {
 
  // **************TEXT BOX STUFF****************
   $scope.addText = function (text) {
-    var text = "New Text";
+    var text = "Click me to customize";
     var textSample = new fabric.Text(text, {
       left: 192,
       top: 450,
@@ -215,23 +215,6 @@ function addAccessors($scope) {
       centerTransform: true
     });
     canvas.add(textSample);
-  };
-
-  // *****************field names to text box
-  $scope.pushvaluetotextbox = function (value) {
-      var text = value;
-      var fieldText = new fabric.Text(text, {
-      left: 192,
-      top: 450,
-      fontFamily: 'helvetica',
-      fill: '#000' + getRandomColor(),
-      scaleX: 0.5,
-      scaleY: 0.5,
-      fontWeight: '',
-      originX: 'center',
-      centerTransform: true
-    });
-      canvas.add(fieldText)
   };
 
 
