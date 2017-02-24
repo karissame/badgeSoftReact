@@ -143,6 +143,7 @@ img#pic {
     background:none transparent;
     border-style: none;
     height: 670px;
-    width: 70%;
-    margin-left: 15%;
+    width:995px;
+    margin:0 auto;
+    display:block;
 }

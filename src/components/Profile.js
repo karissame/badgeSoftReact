@@ -135,7 +135,6 @@ export default class Profile extends React.Component {
                         <form id="updateform" onSubmit={this.handleSubmit} >
                           <div id="profile" className="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-2">
                               <h2>Profile Details</h2>
-                              <h3 id="username">Username:&nbsp; &nbsp; </h3><input value={this.state.username} onChange={this.handleChange.bind(this,'username')} /><br />
                               <h3 id="fname">First Name:&nbsp; &nbsp; </h3><input value={this.state.fname} onChange={this.handleChange.bind(this,'fname')} placeholder={this.props.user.fname} /><br />
                               <h3 id="lname">Last Name:&nbsp; &nbsp; </h3><input value={this.state.lname} onChange={this.handleChange.bind(this,'lname')} placeholder={this.props.user.lname} /><br />
                               <h3 id="pass">Password:&nbsp; &nbsp; </h3><input value={this.state.password} onChange={this.handleChange.bind(this,'password')} /><br />
