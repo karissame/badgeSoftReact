@@ -18,6 +18,7 @@
     <![endif]-->
     <script src="fabric.js"></script>
     <script src="angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type='text/javascript'>//<![CDATA[
 
     function draw(ev) {
@@ -35,15 +36,15 @@
         }
     }
 
-    document.getElementById("uploadimage").addEventListener("change", draw, false)
     //]]>
 
     </script>
+
 </head>
 <body bgcolor="black">
+
 <script>
-    var imageLoader = document.getElementById('imageLoader');
-    imageLoader.addEventListener('change', handleImage, false);
+
 
     function handleImage(e) {
         var reader = new FileReader();
@@ -65,7 +66,6 @@
     (function () {
 
         if (document.location.hostname === 'localhost') {
-            var links = document.getElementById('header').getElementsByTagName('a');
             for (var i = 0, len = links.length; i < len; i++) {
                 // very retarted fix but fuck it
                 links[i].href = links[i].href.replace('fabricjs.com', 'localhost:4000');
@@ -104,9 +104,7 @@
         }
         reader.readAsDataURL(e.target.files[0]);
     }
-    canvas.add(imageLoader);
-    })
-    ;
+
 
 </script>
 <div id="bd-wrapper" ng-controller="CanvasControls">
@@ -153,7 +151,8 @@
                 <br>
                 <button id="send-backwards" class="btn btn-object-action" ng-click="sendBackwards()">Send backwards
                 </button>
-                <button id="send-to-back" class="btn btn-object-action" ng-click="sendToBack()">Send to back</button>
+                <button id="send-to-back" class="btn btn-object-action" ng-click="sendToBack()">Send to back
+                </button>
                 <button id="bring-forward" class="btn btn-object-action" ng-click="bringForward()">Bring forwards
                 </button>
                 <button id="bring-to-front" class="btn btn-object-action" ng-click="bringToFront()">Bring to front
@@ -180,9 +179,12 @@
 
                 </div>
                 <!--<div id="text-wrapper" style="margin-top: 10px" ng-show="getText()"> ************* use this one if you want it to hide-->
-                <div style="float:left;margin-left: 10px;">
-                    <p><b>Column Choices:</b>
-                        <button type="button" class="btn rect" ng-click="databasesource()">Column</button></p>
+                <div style="float:left">
+                    <p><b>Field Names:</b>
+                        <select id="fieldNames">
+                            <option value="" selected>Select</option>
+                        </select>
+                    </p>
                     <p><b>Employee Picture:</b>
                         <button type="button" class="btn rect" ng-click="databasesource()">Placeholder</button>
                     </p>
@@ -198,7 +200,7 @@
                         <button type="button" class="btn btn-object-action" id="text-cmd-italic"
                                 ng-click="toggleItalic()" ng-class="{'btn-inverse': isItalic()}">
                             Italic
-                        </button>
+                        </button><br>
                         <button type="button" class="btn btn-object-action" id="text-cmd-underline"
                                 ng-click="toggleUnderline()" ng-class="{'btn-inverse': isUnderline()}">
                             Underline
@@ -247,7 +249,8 @@
                         </div>
                         <div>
                             <label for="text-lines-bg-color">Background text color:</label>
-                            <input type="color" value="" id="text-lines-bg-color" size="10" class="btn-object-action"
+                            <input type="color" value="" id="text-lines-bg-color" size="10"
+                                   class="btn-object-action"
                                    bind-value-to="textBgColor">
                         </div>
                         <div>
@@ -340,7 +343,45 @@
 
         }
         reader.readAsDataURL(e.target.files[0]);
+    };
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
     }
+    $("document").ready(function () {
+        console.log("doc ready");
+        var columns = GetURLParameter('columns');
+        console.log(columns);
+        var columnsobj = eval("(" + decodeURI(columns) + ')');
+        for (i = 0; i < columnsobj.length; i++) {
+            $('#fieldNames').append('<option value="' + columnsobj[i] + '">' + columnsobj[i] + '</option>');
+        }
+//        var links = document.getElementById('header').getElementsByTagName('a');
+//        var imageLoader = document.getElementById('imageLoader');
+//        imageLoader.addEventListener('change', handleImage, false);
+//        canvas.add(imageLoader);
+//        document.getElementById("uploadimage").addEventListener("change", draw, false)
+//        $('#state').change(function () {
+//        var columns = $.url().param('columns');
+//        columns = $('#kitchensinkiframe')[0].columns.split(',');
+
+//    });
+
+(function() {
+          var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
+          var frameQueryString = document.location.href.split("columns=")[1];
+          if (frameQueryString != undefined) {
+          document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
+        }
+        })();
+    });
 </script>
+
 </body>
 </html>

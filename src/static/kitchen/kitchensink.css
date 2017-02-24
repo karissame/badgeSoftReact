@@ -97,27 +97,27 @@ input[type=radio] {
 #text-controls {
     display: inline-block;
     vertical-align: top;
-    margin-left: 10px;
-    border: 1px dotted #ccc;
-    padding: 10px;
+    /*margin-left: 10px;*/
+    /*border: 1px dotted #ccc;*/
+    /*padding: 10px;*/
     width: 220px;
 }
 
 #text-controls textarea {
     float: left;
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
 
 #text-controls-additional {
-    display: inline-block;
-    vertical-align: top;
-    border: 1px dotted #ccc;
-    padding: 10px;
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    /*border: 1px dotted #ccc;*/
+    /*padding: 10px;*/
 }
 
 #text-controls-additional button {
-    vertical-align: top;
-    display: block;
+    /*vertical-align: top;*/
+    /*display: block;*/
     margin-bottom: 7px;
 }
 
