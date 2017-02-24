@@ -275,11 +275,10 @@ function addAccessors($scope) {
   $scope.rasterizeJSON = function () {
     var design = JSON.stringify(canvas);
     var userid = 1;
-    var data = {data:{
+    var data = {
       design:design,
-      userid:userid,
-      designid:100
-    }};
+      userid:userid
+    };
     console.log(data);
     $.ajax({
       type: "POST",

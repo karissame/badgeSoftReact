@@ -193,31 +193,35 @@ app.post('/getColumns', function(req,res) {
 // **************************
 app.post('/saveDesign', function(req,res) {
     console.log('received card design to server');
-    var designid = req.body.data.designid || "";
-    var design = req.body.data.design;
-    var userid = req.body.data.userid;
+    console.log(req.body.userid);
+    var designid = req.body.designid || "";
+    var design = req.body.design;
+    var userid = req.body.userid;
     if (designid) {
+        console.log("attemptimg to update existing design");
         knex('designs').update({design:design}).where('designid',designid)
           .asCallback(function(err,results)    {
             if (err)    {
                 res.send({success:false,message:err.message});
                 }
             else{
-                console.log(results);
+                console.log("update result is: ",results);
                 res.send({success:true,message:results});
             }
         })
     } else {
-    knex('designs').insert({designid:designid, userid:userid, design:design})
-      .asCallback(function(err,results)    {
-        if (err)    {
-            res.send({success:false,message:err.message});
-            }
-        else{
-            console.log(results);
-            res.send({success:true,message:results});
+      console.log("No designid supplied. Going to insert new design");
+      knex('designs').insert({userid:userid, design:design})
+        .asCallback(function(err,results)    {
+            if (err)    {
+                res.send({success:false,message:err.message});
+                }
+            else{
+                console.log("Design saved ",results);
+                res.send({success:true,message:results});
         }
       })
+
     }
 });
 
