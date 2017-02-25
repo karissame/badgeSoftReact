@@ -249,7 +249,7 @@ function addAccessors($scope) {
   //   addImage('encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToyqM2gcwH1vXUwN0vOMsl24f8Yns7Y-H-rFbssDUOVBQUeREYOA&database=' + database);
   // };
   $scope.databasesource = function () {
-    var database = prompt("What is the fucking source of your database?", "Put your database here.");
+    var database = prompt("What is the ducking source of your database?", "Put your database here.");
     if (database) {
       addImage(database);
     } else {
