@@ -383,25 +383,6 @@ function addAccessors($scope) {
         canvas.bringToFront(activeObject);
       }
     };
-    var pattern = new fabric.Pattern({source: '/assets/escheresque.png', repeat: 'repeat'});
-    $scope.patternify = function () {
-      var obj = canvas.getActiveObject();
-      if (!obj)return;
-      if (obj.fill instanceof fabric.Pattern) {
-        obj.fill = null;
-      }
-      else {
-        if (obj instanceof fabric.PathGroup) {
-          obj.getObjects().forEach(function (o) {
-            o.fill = pattern;
-          });
-        }
-        else {
-          obj.fill = pattern;
-        }
-      }
-      canvas.renderAll();
-    };
     $scope.clip = function () {
       var obj = canvas.getActiveObject();
       if (!obj)return;
@@ -614,22 +595,6 @@ function addAccessors($scope) {
         canvas.freeDrawingBrush.shadowBlur = parseInt(value, 10) || 1;
       }
     };
-    function initBrushes() {
-      if (!fabric.PatternBrush)return;
-      initVLinePatternBrush();
-      initHLinePatternBrush();
-      initSquarePatternBrush();
-      initDiamondPatternBrush();
-      initImagePatternBrush();
-    }
-
-    initBrushes();
-    function initImagePatternBrush() {
-      var img = new Image();
-      img.src = '../assets/honey_im_subtle.png';
-      $scope.texturePatternBrush = new fabric.PatternBrush(canvas);
-      $scope.texturePatternBrush.source = img;
-    }
 
     function initDiamondPatternBrush() {
       $scope.diamondPatternBrush = new fabric.PatternBrush(canvas);
