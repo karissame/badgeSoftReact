@@ -281,6 +281,8 @@ function addAccessors($scope) {
   };
   $scope.rasterizeJSON = function () {
     var design = JSON.stringify(canvas);
+    console.log("About to save- stringified design is:");
+    console.log("design");
     var userid = 1;
     var data = {
       design:design,

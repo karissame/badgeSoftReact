@@ -182,7 +182,6 @@
                     <p><b>Field Names:</b>
                         <select id="fieldNames" onChange="$('textarea')[0].value+=value">
                             <option value="" class="ng-binding">Select from these fields</option>
-                            <option value="<fname>">First Name</option>
                         </select>
                     </p>
                     <p><b>Employee Picture:</b>
@@ -360,15 +359,15 @@
         var design = GetURLParameter('design');
         var designid = GetURLParameter('designid');
         var userid = GetURLParameter('userid');
-        console.log("in kitchen, this is a list of columns");
-        console.log(columns);
+        // console.log("in kitchen, this is a list of columns");
+        // console.log(columns);
         var designobj = eval("(" + decodeURI(design) + ')');
         console.log(designobj);
         var columnsobj = eval("(" + decodeURI(columns) + ')');
         console.log("in kitchen, this is the column array");
         console.log(columnsobj);
         for (i = 0; i < columnsobj.length; i++) {
-            console.log(columnsobj[i]);
+            // console.log(columnsobj[i]);
             $('#fieldNames').append('<option value="' + columnsobj[i] + '">' + columnsobj[i] + '</option>');
         }
         if (designobj) {

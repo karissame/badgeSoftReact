@@ -117,7 +117,7 @@ app.post("/login",function(req,res){
             if (err)    {
                 return console.error(err);
             }
-            console.log(user);
+            // console.log(user);
             if (user)    {
                 console.log("User found. Comparing password next...");
                 bcrypt.compare(password,user[0].password, function(err,loginresult)               {
@@ -142,8 +142,8 @@ app.post("/login",function(req,res){
 
 // **************************
 app.post('/checkConnection', function(req,res) {
-    console.log('checking user supplied db');
-    console.log(req.body.data);
+    // console.log('checking user supplied db');
+    // console.log(req.body.data);
     var table = req.body.data.dbtable;
     var userknex = require('knex')({
       client: req.body.data.client,
@@ -171,7 +171,7 @@ app.post('/checkConnection', function(req,res) {
 
 // **************************
 app.post('/getColumns', function(req,res) {
-    console.log('checking columns for this connection:');
+    // console.log('checking columns for this connection:');
     var table = req.body.data.dbtable;
     var userknex = require('knex')({
       client: req.body.data.client,
@@ -184,7 +184,7 @@ app.post('/getColumns', function(req,res) {
             res.send({success:false,message:err.message});
             }
         else{
-            console.log("Got column response as ",results);
+            // console.log("Got column response as ",results);
             var columns = results;
             console.log("About to check for designs");
             knex('designs').select('*').where('userid',req.body.data.userid)
@@ -195,7 +195,7 @@ app.post('/getColumns', function(req,res) {
                       }
                   else {
                       var designs = results2;
-                      console.log(columns,designs);
+                      console.log("designs received");
                       res.send({success:true,message:columns,designs:designs});
                   }
               })
@@ -212,7 +212,7 @@ app.post('/saveDesign', function(req,res) {
     var designid = req.body.designid || "";
     var design = req.body.design;
     var userid = req.body.userid;
-    if (designid) {
+    if (designid && designid>1) {
         console.log("attemptimg to update existing design");
         knex('designs').update({design:design}).where('designid',designid)
           .asCallback(function(err,results)    {
