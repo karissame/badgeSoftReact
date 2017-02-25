@@ -18,7 +18,11 @@ button.selected {
 textarea {
     font-family: monospace;
 }
-
+#no-margin{
+    margin:0;
+    padding:0;
+    border:none;
+}
 input[type=color] {
     width: 40px;
     padding: 0;

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="kitchensink">
+<head>
+    <meta charset="utf-8">
+    <title>placeholder</title>
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="prism.css">
+    <style>pre {
+        margin-left: 15px !important
+    }</style>
+    <style>.thumb {
+        height: 165px;
+        border: 1px solid #000;
+        margin: 1px 1px 10px 40px;
+    }</style>
+    <!--[if lt IE 9]>
+    <script src="excanvas.js"></script>
+    <![endif]-->
+    <script src="fabric.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript'>//<![CDATA[
+
+    function draw(ev) {
+        console.log(ev);
+        var ctx = document.getElementById('canvas').getContext('2d'),
+            img = new Image(),
+            f = document.getElementById("uploadimage").files[0],
+            url = window.URL || window.webkitURL,
+            src = url.createObjectURL(f);
+
+        img.src = src;
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+            url.revokeObjectURL(src);
+        }
+    }
+
+    //]]>
+
+    </script>
+
+</head>
+<body bgcolor="black">
+
+<script>
+
+
+    function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = new Image();
+            img.onload = function () {
+                var imgInstance = new fabric.Image(img, {
+                    scaleX: 0.2,
+                    scaleY: 0.2
+                })
+                canvas.add(imgInstance);
+            }
+            img.src = event.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+</script>
+<script>
+    (function () {
+
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+
+            !function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, "script", "twitter-wjs");
+    })();
+</script>
+<script type='text/javascript'>
+
+    function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = new Image();
+            img.onload = function () {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+            }
+            img.src = event.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+
+</script>
+<div id="no-margin" ng-controller="CanvasControls">
+    <!--[if IE]>
+    <script src="../lib/fonts/Delicious.font.js"></script><![endif]-->
+    <script src="bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="kitchensink.css">
+    <link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>
+        <canvas id="canvas" width="384" height="610"></canvas>
+
+    </div>
+
+
+
+
+<script>
+    var kitchensink = {};
+    var canvas = new fabric.Canvas('canvas');
+    var design = '{"objects":[{"type":"rect","left":50,"top":50,"width":20,"height":20,"fill":"green","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"selectable":true,"hasControls":true,"hasBorders":true,"hasRotatingPoint":false,"transparentCorners":true,"perPixelTargetFind":false,"rx":0,"ry":0},{"type":"circle","left":100,"top":100,"width":100,"height":100,"fill":"red","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"selectable":true,"hasControls":true,"hasBorders":true,"hasRotatingPoint":false,"transparentCorners":true,"perPixelTargetFind":false,"radius":50}],"background":"rgba(0, 0, 0, 0)"}'
+    canvas.loadFromJSON(design);
+</script>
+<script src="utils.js"></script>
+<script src="app_config.js"></script>
+<script src="controller.js"></script>
+</div>
+<script>
+    (function () {
+        var mainScriptEl = document.getElementById('main');
+        if (!mainScriptEl) return;
+        var preEl = document.createElement('pre');
+        var codeEl = document.createElement('code');
+        codeEl.innerHTML = mainScriptEl.innerHTML;
+        codeEl.className = 'language-javascript';
+        preEl.appendChild(codeEl);
+        document.getElementById('bd-wrapper').appendChild(preEl);
+    })();
+</script>
+<script>
+    (function () {
+        fabric.util.addListener(fabric.window, 'load', function () {
+            var canvas = this.__canvas || this.canvas,
+                canvases = this.__canvases || this.canvases;
+
+            canvas && canvas.calcOffset && canvas.calcOffset();
+
+            if (canvases && canvases.length) {
+                for (var i = 0, len = canvases.length; i < len; i++) {
+                    canvases[i].calcOffset();
+                }
+            }
+        });
+    })();
+</script>
+<script>
+    // document.getElementById('imgLoader').onchange = function handleImage(e) {
+    //     var reader = new FileReader();
+    //     reader.onload = function (event) {
+    //         console.log('fdsf');
+    //         var imgObj = new Image();
+    //         imgObj.src = event.target.result;
+    //         imgObj.onload = function () {
+    //             // start fabricJS stuff
+    //
+    //             var image = new fabric.Image(imgObj);
+    //             image.set({
+    //                 left: 250,
+    //                 top: 250,
+    //                 angle: 20,
+    //                 padding: 10,
+    //                 cornersize: 10
+    //             });
+    //             //image.scale(getRandomNum(0.1, 0.25)).setCoords();
+    //             canvas.add(image);
+    //
+    //             // end fabricJS stuff
+    //         }
+    //
+    //     }
+    //     reader.readAsDataURL(e.target.files[0]);
+    // };
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+    // $("document").ready(function () {
+    //     console.log("doc ready");
+    //     var columns = GetURLParameter('columns');
+    //     console.log(columns);
+    //     var columnsobj = eval("(" + decodeURI(columns) + ')');
+    //     for (i = 0; i < columnsobj.length; i++) {
+    //         $('#fieldNames').append('<option value="' + columnsobj[i] + '">' + columnsobj[i] + '</option>');
+    //     }
+//
+
+
+</script>
+
+</body>
+</html>
