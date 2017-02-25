@@ -258,6 +258,11 @@
                                    bind-value-to="strokeColor">
                         </div>
                         <div>
+                            <label for="text-font-size">Stroke Width:</label>
+                            <input type="range" value="" min="0" max="100" step="5" id="text-stroke-width"
+                                   class="btn-object-action" bind-value-to="fontSize">
+                        </div>
+                        <div>
                             <label for="text-font-size">Font size:</label>
                             <input type="range" value="" min="1" max="120" step="1" id="text-font-size"
                                    class="btn-object-action" bind-value-to="fontSize">
@@ -370,6 +375,7 @@
             // console.log(columnsobj[i]);
             $('#fieldNames').append('<option value="' + columnsobj[i] + '">' + columnsobj[i] + '</option>');
         }
+
         if (designobj) {
             console.log("Going to load user design")
             canvas.loadFromJSON(designobj);
@@ -386,14 +392,14 @@
    });
 
 
-// (function() {
-//           var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
-//           var frameQueryString = document.location.href.split("columns=")[1];
-//           if (frameQueryString != undefined) {
-//           document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
-//         }
-//         })();
-//     });
+(function() {
+          var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
+          var frameQueryString = document.location.href.split("columns=")[1];
+          if (frameQueryString != undefined) {
+          document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
+        }
+        })();
+
 </script>
 
 </body>
