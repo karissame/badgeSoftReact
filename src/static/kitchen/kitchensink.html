@@ -19,7 +19,7 @@
     <script src="fabric.js"></script>
     <script src="angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type='text/javascript'>//<![CDATA[
+    <script type='text/javascript'>
 
     function draw(ev) {
         console.log(ev);
@@ -36,7 +36,6 @@
         }
     }
 
-    //]]>
 
     </script>
 
@@ -180,12 +179,11 @@
                 </div>
                 <!--<div id="text-wrapper" style="margin-top: 10px" ng-show="getText()"> ************* use this one if you want it to hide-->
                 <div style="float:left">
-<!--****************FIELD NAMES NOT WORKING***********************-->
 <!--****************LOOK AT CONTROLLERJS LINE 203************-->
                     <p><b>Field Names:</b>
                         <select id="fieldNames" onChange="$('textarea')[0].value+=value">
                             <option value="" class="ng-binding">Select from these fields</option>
-                            <option value="<fname>">First Name</option>
+                            <!--<option value="<fname>">First Name</option>-->
                         </select>
                     </p>
                     <p><b>Employee Picture:</b>
@@ -193,7 +191,7 @@
                     </p>
                     <p><b>Text/Label:</b>
                         <button class="btn" ng-click="addText()">Add text</button>
-                    </p>
+                    </p>d
                     <textarea bind-value-to="text" ></textarea><br>
                     <div id="text-controls-additional">
                         <button type="button" class="btn btn-object-action" ng-click="toggleBold()"
@@ -376,14 +374,14 @@
 
 //    });
 
-//(function() {
-//          var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
-//          var frameQueryString = document.location.href.split("columns=")[1];
-//          if (frameQueryString != undefined) {
-//          document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
-//        }
-//        })();
-//    });
+(function() {
+          var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
+          var frameQueryString = document.location.href.split("columns=")[1];
+          if (frameQueryString != undefined) {
+          document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
+        }
+        })();
+    });
 </script>
 
 </body>
