@@ -14,6 +14,7 @@ export default class Layout extends React.Component {
     this.state = {
       loggedIn: false,
       user: {
+         id:"",
         username: "",
         fname: "",
         lname: "",
@@ -36,7 +37,7 @@ export default class Layout extends React.Component {
       axios.post('/login', loginObj)
         .then(function (response) {
         //   console.log("Got data back from the server");
-        //   console.log(response);
+          console.log(response);
           if (response.data.login) {
             self.setState({
               loggedIn: true,

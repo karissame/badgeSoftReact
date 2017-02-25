@@ -183,8 +183,18 @@ app.post('/getColumns', function(req,res) {
             res.send({success:false,message:err.message});
             }
         else{
-            console.log(results);
-            res.send({success:true,message:results});
+            var columns = results;
+            knex('designs').select('*').where('userid',req.body.data.userid)
+              .asCallback(function(err,results2) {
+                  if (err)    {
+                      res.send({success:false,message:err.message});
+                      }
+                  else {
+                      var designs = results2;
+                      res.send({success:true,message:columns,designs:designs});
+                  }
+              })
+            // console.log(results);
         }
     })
 });

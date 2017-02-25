@@ -117,8 +117,6 @@
 <script>
     var kitchensink = {};
     var canvas = new fabric.Canvas('canvas');
-    var design = '{"objects":[{"type":"rect","left":50,"top":50,"width":20,"height":20,"fill":"green","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"selectable":true,"hasControls":true,"hasBorders":true,"hasRotatingPoint":false,"transparentCorners":true,"perPixelTargetFind":false,"rx":0,"ry":0},{"type":"circle","left":100,"top":100,"width":100,"height":100,"fill":"red","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"selectable":true,"hasControls":true,"hasBorders":true,"hasRotatingPoint":false,"transparentCorners":true,"perPixelTargetFind":false,"radius":50}],"background":"rgba(0, 0, 0, 0)"}'
-    canvas.loadFromJSON(design);
 </script>
 <script src="utils.js"></script>
 <script src="app_config.js"></script>
@@ -189,16 +187,31 @@
             }
         }
     }
-    // $("document").ready(function () {
-    //     console.log("doc ready");
-    //     var columns = GetURLParameter('columns');
-    //     console.log(columns);
-    //     var columnsobj = eval("(" + decodeURI(columns) + ')');
-    //     for (i = 0; i < columnsobj.length; i++) {
-    //         $('#fieldNames').append('<option value="' + columnsobj[i] + '">' + columnsobj[i] + '</option>');
-    //     }
+    $("document").ready(function () {
+        console.log("doc ready");
+        var columns = GetURLParameter('columns');
+        var design = GetURLParameter('design');
+        var candidates = GetURLParameter('candidates');
+        console.log(columns);
+        console.log('************************');
+        console.log(candidates);
+        console.log('************************');
+        console.log(design);
+        var columnsobj = eval("(" + decodeURI(columns) + ')');
+        var candidatesobj = eval("(" + decodeURI(candidates) + ')');
+        var designobj = eval("(" + decodeURI(design) + ')');
+        console.log(columnsobj);
+        console.log('************************');
+        console.log(candidatesobj);
+        console.log('************************');
+        console.log(designobj);
+        // for (i = 0; i < columnsobj.length; i++) {
+        //     $('#fieldNames').append('<option value="' + columnsobj[i] + '">' + columnsobj[i] + '</option>');
+        // }
+        // var design = '{"objects":[{"type":"rect","left":50,"top":50,"width":20,"height":20,"fill":"green","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"selectable":true,"hasControls":true,"hasBorders":true,"hasRotatingPoint":false,"transparentCorners":true,"perPixelTargetFind":false,"rx":0,"ry":0},{"type":"circle","left":100,"top":100,"width":100,"height":100,"fill":"red","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"selectable":true,"hasControls":true,"hasBorders":true,"hasRotatingPoint":false,"transparentCorners":true,"perPixelTargetFind":false,"radius":50}],"background":"rgba(0, 0, 0, 0)"}'
+        canvas.loadFromJSON(designobj);
 //
-
+});
 
 </script>
 

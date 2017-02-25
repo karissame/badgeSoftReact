@@ -27,26 +27,39 @@ export default class CardEditor extends React.Component {
     var data = {
       client: this.props.user.dbclient,
       dbtable: this.props.user.dbtable,
-      connection: connection
+      connection: connection,
+      userid:this.props.user.id
     };
+    var columnarr=[];
+    var designid="";
+    var design="";
     var self = this;
+    var userid = this.props.user.id;
     axios.post('/getColumns', {data: data})
       .then(function (response) {
         var columns = Object.keys(response.data.message);
+        var designs = response.data.designs;
+        console.log(designs);
+        var designarr=[];
+        designs.forEach(function(design) {
+            designarr.push(design.designid);
+        });
+        console.log(designarr);
+        var designid = designarr[0];
         if (self.state.columns) {
-          //   console.log("Columns already in state ");
-          //   console.log(self.state.columns);
+            var columnarr = JSON.stringify(self.state.columns);
+            console.log("Columns already in state ");
+            console.log(self.state.columns);
+            console.log(self.state.designs);
+            console.log(designid);
         } else {
-          self.setState({columns: columns});
-          //   console.log("Set state.columns as ");
-          //   console.log(self.state.columns);
+          self.setState({columns: columns, designs:designs});
         }
-      })
-    var columnarr = JSON.stringify(self.state.columns);
-    console.log(columnarr);
+        console.log('/kitchen/kitchensink.html?columns=',columnarr,'&userid=',userid,'&designid',designid,'&design=',design);
+    });
     return (
       <div>
-        <iframe id="kitchensinkiframe" className="kitchensink" src={'/kitchen/kitchensink.html?columns=' + columnarr}/>
+        <iframe id="kitchensinkiframe" className="kitchensink" src={'/kitchen/kitchensink.html?columns=' + columnarr + '&userid=' + userid + '&designid' + designid + '&design=' + design}/>
 
       </div>
     );
