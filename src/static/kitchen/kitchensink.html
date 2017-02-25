@@ -62,31 +62,30 @@
     }
 </script>
 <script>
-    // (function () {
-    //
-    //     if (document.location.hostname === 'localhost') {
-    //         for (var i = 0, len = links.length; i < len; i++) {
-    //             // very retarted fix but fuck it
-    //             links[i].href = links[i].href.replace('fabricjs.com', 'localhost:4000');
-    //         }
-    //     }
-    //     else {
-    //         var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-    //         s.async = true;
-    //         s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-    //         t.parentNode.insertBefore(s, t);
-    //
-    //         !function (d, s, id) {
-    //             var js, fjs = d.getElementsByTagName(s)[0];
-    //             if (!d.getElementById(id)) {
-    //                 js = d.createElement(s);
-    //                 js.id = id;
-    //                 js.src = "//platform.twitter.com/widgets.js";
-    //                 fjs.parentNode.insertBefore(js, fjs);
-    //             }
-    //         }(document, "script", "twitter-wjs");
-    //     }
-    // })();
+    (function () {
+
+        // if (document.location.hostname === 'localhost') {
+        //     for (var i = 0, len = links.length; i < len; i++) {
+        //         links[i].href = links[i].href.replace('fabricjs.com', 'localhost:4000');
+        //     }
+        // }
+        // else {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+
+            !function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, "script", "twitter-wjs");
+        // }
+    })();
 </script>
 <script type='text/javascript'>
 
@@ -183,7 +182,7 @@
                     <p><b>Field Names:</b>
                         <select id="fieldNames" onChange="$('textarea')[0].value+=value">
                             <option value="" class="ng-binding">Select from these fields</option>
-                            <!--<option value="<fname>">First Name</option>-->
+                            <option value="<fname>">First Name</option>
                         </select>
                     </p>
                     <p><b>Employee Picture:</b>
@@ -191,7 +190,7 @@
                     </p>
                     <p><b>Text/Label:</b>
                         <button class="btn" ng-click="addText()">Add text</button>
-                    </p>d
+                    </p>
                     <textarea bind-value-to="text" ></textarea><br>
                     <div id="text-controls-additional">
                         <button type="button" class="btn btn-object-action" ng-click="toggleBold()"
@@ -358,41 +357,44 @@
     $("document").ready(function () {
         console.log("doc ready");
         var columns = GetURLParameter('columns');
+        var design = GetURLParameter('design');
+        var designid = GetURLParameter('designid');
+        var userid = GetURLParameter('userid');
+        console.log("in kitchen, this is a list of columns");
         console.log(columns);
+        var designobj = eval("(" + decodeURI(design) + ')');
+        console.log(designobj);
         var columnsobj = eval("(" + decodeURI(columns) + ')');
+        console.log("in kitchen, this is the column array");
+        console.log(columnsobj);
         for (i = 0; i < columnsobj.length; i++) {
+            console.log(columnsobj[i]);
             $('#fieldNames').append('<option value="' + columnsobj[i] + '">' + columnsobj[i] + '</option>');
         }
-//        var links = document.getElementById('header').getElementsByTagName('a');
-//        var imageLoader = document.getElementById('imageLoader');
-//        imageLoader.addEventListener('change', handleImage, false);
-//        canvas.add(imageLoader);
-//        document.getElementById("uploadimage").addEventListener("change", draw, false)
-//        $('#state').change(function () {
-//        var columns = $.url().param('columns');
-//        columns = $('#kitchensinkiframe')[0].columns.split(',');
-
-//    });
-
-<<<<<<< HEAD
-(function() {
-          var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
-          var frameQueryString = document.location.href.split("columns=")[1];
-          if (frameQueryString != undefined) {
-          document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
+        if (designobj) {
+            console.log("Going to load user design")
+            canvas.loadFromJSON(designobj);
         }
-        })();
-    });
-=======
-//(function() {
-//          var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
-//          var frameQueryString = document.location.href.split("columns=")[1];
-//          if (frameQueryString != undefined) {
-//          document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
-//        }
-//        })();
+   //     var links = document.getElementById('header').getElementsByTagName('a');
+   //     var imageLoader = document.getElementById('imageLoader');
+   //     imageLoader.addEventListener('change', handleImage, false);
+   //     canvas.add(imageLoader);
+   //     document.getElementById("uploadimage").addEventListener("change", draw, false)
+   //     $('#state').change(function () {
+   //     var columns = $.url().param('columns');
+   //     columns = $('#kitchensinkiframe')[0].columns.split(',');
+   //
    });
->>>>>>> origin/master
+
+
+// (function() {
+//           var frameBaseSRC = document.getElementById("kitchensinkiframe").src;
+//           var frameQueryString = document.location.href.split("columns=")[1];
+//           if (frameQueryString != undefined) {
+//           document.getElementById("kitchensinkiframe").src = frameBaseSRC + "?columns=" + frameQueryString;
+//         }
+//         })();
+//     });
 </script>
 
 </body>

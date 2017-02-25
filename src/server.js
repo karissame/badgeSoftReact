@@ -180,17 +180,22 @@ app.post('/getColumns', function(req,res) {
     userknex(table).columnInfo()
       .asCallback(function(err,results)    {
         if (err)    {
+            console.log("error retrieving column info");
             res.send({success:false,message:err.message});
             }
         else{
+            console.log("Got column response as ",results);
             var columns = results;
+            console.log("About to check for designs");
             knex('designs').select('*').where('userid',req.body.data.userid)
               .asCallback(function(err,results2) {
                   if (err)    {
+                      console.log("Error retrieving designs");
                       res.send({success:false,message:err.message});
                       }
                   else {
                       var designs = results2;
+                      console.log(columns,designs);
                       res.send({success:true,message:columns,designs:designs});
                   }
               })
