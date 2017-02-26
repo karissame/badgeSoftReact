@@ -76,9 +76,21 @@ changeDesign(event) {
                 self.setState({columns:columns});
             }
         } else {
-          self.setState({columns: columns, designs:designs});
+            console.log("self.state.designs[0] false, skipped to 79");
+            if (designs[0]) {
+                console.log("Designs defined as",designs);
+                console.log("Columns defined as",columns);
+                self.setState({columns: columns, designs:designs});
+            } else {
+              console.log("setting custom empty design here");
+              designs = [{designid:1,design:'{"objects":[]}'}];
+              self.setState({designs: designs});
+      }
         }
+        console.log("all conditionals done. Skipped to 88");
         console.log("setting state to response from callback");
+        console.log("designs to be set are",designs);
+        console.log("columns to be set are",columns);
         self.setState({columns: columns, designs: designs});
         // console.log('/kitchen/kitchensink.html?columns=',JSON.stringify(self.state.columns),'&userid=',userid,'&designid',designid,'&design=',design);
     });
@@ -107,7 +119,7 @@ changeDesign(event) {
       </div>
   );} else {
       var options = [];
-        for (var i = 0; i < this.state.designs.length; i++) {
+        for (var i = 1; i < this.state.designs.length; i++) {
           options.push(<option value={this.state.designs[i].designid} key={i}>{this.state.designs[i].designid}</option>);
         }
       return(
