@@ -183,55 +183,64 @@ export default class Profile extends React.Component {
               <div id="updateformmainpage">
                 <div id="profilemainpage" className="col-xs-12">
                     <h1>Log in to continue or <button name="register" value="register" onClick={(e) => this.props.changePage("register")}>Register</button></h1>
-                    <div id="mainpageheader" className="col-xs-12">
-                      <h1><b>Print badges straight from your browser!</b></h1>
-                    </div>
-                    <div id="profilemainpage" className="col-xs-12">
-                        <img id="cardexamplestall" src="/img/cardexamples/card1.jpg"></img>
-                        <img id="cardexamplestall" src="/img/cardexamples/card2.jpg"></img>
-                        <img id="cardexampleswide" src="/img/cardexamples/card3.jpg"></img>
-                        <img id="cardexamplestall" src="/img/cardexamples/card4.jpg"></img>
-                        <img id="cardexamplestall" src="/img/cardexamples/card5.jpg"></img>
-                    </div>
-                    <div id="mainpageheader" className="col-xs-12">
-                      <h2><b>Quick! Easy! Free!</b></h2>
-                    </div>
-                    <div id="cardinstructions" className="col-xs-12">
-                      <div id="stepbystep" className="col-xs-12">
-                        <h2><b>Connect to your database</b></h2>
-                        <ul>
-                        <li>Choose which type of database you are connecting to</li>
-                        <li>Then fill out the form with your database credentials</li>
-                        </ul>
-                        <img src="/img/stepbystep/step1.png"></img>
+                      <div id="mainpageheader" className="col-xs-12">
+                        <h1><b>Print badges straight from your browser!</b></h1>
                       </div>
-                      <div id="stepbystep" className="col-xs-12">
-                          <h2><b>Simple to add headshot placeholders</b></h2>
-                          <ul>
-                          <li>Click on the placeholder button next to employee picture</li>
-                          <li>It adds a default placeholder picture in the middle of the id</li>
-                          </ul>
-                          <img src="/img/stepbystep/step2.png"></img>
+                      <div id="profilemainpage" className="col-xs-12">
+                          <img id="cardexamplestall" src="/img/cardexamples/card1.jpg"></img>
+                          <img id="cardexamplestall" src="/img/cardexamples/card2.jpg"></img>
+                          <img id="cardexampleswide" src="/img/cardexamples/card3.jpg"></img>
+                          <img id="cardexamplestall" src="/img/cardexamples/card4.jpg"></img>
+                          <img id="cardexamplestall" src="/img/cardexamples/card5.jpg"></img>
+                      </div>
+                        <div id="mainpageheader" className="col-xs-12">
+                          <h2><b>Quick! Easy! Free!</b></h2>
+                        </div>
+                </div>
+                            <div id="cardinstructions" className="col-xs-12">
+                                    <div id="stepbystep" className="col-xs-12">
+                                      <h2><b>No software to download or maintain</b></h2>
+                                    </div>
+                                    <div id="stepbystep" className="col-xs-12">
+                                        <h2><b>Print to your printer of choice 24/7</b></h2>
+                                    </div>
+                                    <div id="stepbystep" className="col-xs-12 col-sm-6">
+                                      <h2><b>Connect to your database</b></h2>
+                                      <ul>
+                                      <li>Choose which type of database you are connecting to</li>
+                                      <li>Then fill out the form with your database credentials</li>
+                                      </ul>
+                                      <img src="/img/stepbystep/step1.png"></img>
+                                    </div>
+                                    <div id="stepbystep" className="col-xs-12 col-sm-6">
+                                        <h2><b>Simple to add headshot placeholders</b></h2>
+                                        <ul>
+                                        <li>Click on the placeholder button next to employee picture</li>
+                                        <li>It adds a default placeholder picture in the middle of the id</li>
+                                        </ul>
+                                        <img src="/img/stepbystep/step2.png"></img>
 
-                      </div>
-                      <div id="stepbystep" className="col-xs-12">
-                        <img src="/img/stepbystep/step3.png"></img>
-                          <h2><b>Inserting text fields is a snap</b></h2>
-                          <p></p>
-                      </div>
-                      <div id="stepbystep" className="col-xs-12">
-                        <img src="/img/stepbystep/step4.png"></img>
-                          <h2><b>No software to download or maintain</b></h2>
-                          <p></p>
-                      </div>
-                      <div id="stepbystep" className="col-xs-12">
-                          <h2><b>Print to your printer of choice 24/7</b></h2>
-                          <p></p>
-                      </div>
-                    </div>
+                                    </div>
+                                    <div id="stepbystep" className="col-xs-12 col-sm-6">
+                                        <h2><b>Inserting text fields is a snap</b></h2>
+                                        <ul>
+                                        <li>Click the add text button to add a text box to canvas</li>
+                                        <li>Selecting from one of your database fields sends that field straight to text box and allows you to have multiple fields in same text box</li>
+                                        </ul>
+                                        <img src="/img/stepbystep/step3.png"></img>
+                                    </div>
+                                    <div id="stepbystep" className="col-xs-12 col-sm-6">
+                                        <h2><b>Add shapes and get creative</b></h2>
+                                        <ul>
+                                          <li>Place shapes at top for background dividers</li>
+                                          <li>Change colors and give gradients to different objects</li>
+                                          <li>Stack objects on top of each other creating new effects</li>
+                                        </ul>
+                                        <img src="/img/stepbystep/step4.png"></img>
+                                    </div>
+                            </div>
                 </div>
               </div>
-            </div>
         );
         }
       }

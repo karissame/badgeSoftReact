@@ -136,12 +136,19 @@ img#pic {
 }
 #cardinstructions   {
     margin: 0;
+    padding: 0px;
     background-color: #00ade6;
+    text-align: center;
 
 }
 #stepbystep img {
-    height: 250px;
-    width: 375px;
+    height: 300px;
+    width: 425px;
+}
+#stepbystep ul  {
+    padding: 0px;
+    list-style-type: circle;
+    list-style-position: inside;
 }
 .alert {
     padding:0;
