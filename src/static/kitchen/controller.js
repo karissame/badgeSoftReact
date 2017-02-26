@@ -237,7 +237,7 @@ function addAccessors($scope) {
   };
   // ***********ADD IMAGE FROM WEBSITE********
   function addImage(database) {
-    fabric.Image.fromURL('/kitchen/placeholder.jpeg?database=' + database, function (image) {
+    fabric.Image.fromURL('/kitchen/placeholder.jpeg?database$*' + database, function (image) {
       image.set({
         left: 95,
         top: 165,
@@ -279,14 +279,16 @@ function addAccessors($scope) {
     window.open('data:image/svg+xml;utf8,' +
       encodeURIComponent(canvas.toSVG()));
   };
-  $scope.rasterizeJSON = function () {
+  $scope.rasterizeJSON = function (userid,designid) {
     var design = JSON.stringify(canvas);
     console.log("About to save- stringified design is:");
     console.log("design");
-    var userid = 1;
+    var userid = userid;
+    var designid = designid;
     var data = {
       design:design,
-      userid:userid
+      userid:userid,
+      designid:designid
     };
     console.log(data);
     $.ajax({

@@ -168,7 +168,7 @@
                             <button class="btn btn-success" id="rasterize-svg" ng-click="rasterizeSVG()">
                                 SVG
                             </button>
-                            <button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON()">
+                            <button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON(GetURLParameter(userid),GetURLParameter(designid))">
                                 JSON
                             </button>
                         </p>
@@ -180,7 +180,7 @@
                 <div style="float:left">
 <!--****************LOOK AT CONTROLLERJS LINE 203************-->
                     <p><b>Field Names:</b>
-                        <select id="fieldNames" onChange="$('textarea')[0].value+=value">
+                        <select id="fieldNames" onChange="$('textarea')[0].value+=('<'+value+'>')">
                             <option value="" class="ng-binding">Select from these fields</option>
                         </select>
                     </p>
@@ -354,6 +354,7 @@
         for (var i = 0; i < sURLVariables.length; i++) {
             var sParameterName = sURLVariables[i].split('=');
             if (sParameterName[0] == sParam) {
+                console.log(sParameterName[1]);
                 return sParameterName[1];
             }
         }
@@ -364,7 +365,10 @@
         // var design = GetURLParameter('design');
         var design =' {%22objects%22:[{%22type%22:%22image%22,%22originX%22:%22left%22,%22originY%22:%22top%22,%22left%22:95,%22top%22:165,%22width%22:194,%22height%22:259,%22fill%22:%22rgb(0,0,0)%22,%22stroke%22:null,%22strokeWidth%22:1,%22strokeDashArray%22:null,%22strokeLineCap%22:%22butt%22,%22strokeLineJoin%22:%22miter%22,%22strokeMiterLimit%22:10,%22scaleX%22:1,%22scaleY%22:1,%22angle%22:0,%22flipX%22:false,%22flipY%22:false,%22opacity%22:1,%22shadow%22:null,%22visible%22:true,%22clipTo%22:null,%22backgroundColor%22:%22%22,%22src%22:%22http://localhost:3000/kitchen/placeholder.jpeg?database=something%22,%22filters%22:[],%22crossOrigin%22:%22%22},{%22type%22:%22text%22,%22originX%22:%22center%22,%22originY%22:%22top%22,%22left%22:192,%22top%22:450,%22width%22:604.65,%22height%22:52,%22fill%22:%22#00000ade6","stroke":"#1b217e","strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":0.5,"scaleY":0.5,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"#60dfe9","text":"Click me to customize lastname","fontSize":40,"fontWeight":"bold","fontFamily":"helvetica","fontStyle":"italic","lineHeight":1.3,"textDecoration":"","textAlign":"left","path":null,"textBackgroundColor":"","useNative":true},{"type":"rect","originX":"left","originY":"top","left":50,"top":50,"width":20,"height":20,"fill":"green","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","rx":0,"ry":0,"x":0,"y":0},{"type":"circle","originX":"left","originY":"top","left":100,"top":100,"width":100,"height":100,"fill":"#76f019","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","radius":50},{"type":"triangle","originX":"left","originY":"top","left":163,"top":61,"width":50,"height":50,"fill":"#00ade6","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":""},{"type":"line","originX":"left","originY":"top","left":64,"top":259,"width":150,"height":100,"fill":"rgb(0,0,0)","stroke":"#000#00ade6","strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","x1":50,"y1":100,"x2":200,"y2":200},{"type":"polygon","originX":"left","originY":"top","left":207,"top":98,"width":385,"height":245,"fill":"#00ade6","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":{"color":"rgba(0,0,0,0.3)","blur":10,"offsetX":10,"offsetY":10},"visible":true,"clipTo":null,"backgroundColor":"","points":[{"x":-7.5,"y":-122.5},{"x":57.5,"y":-22.5},{"x":192.5,"y":47.5},{"x":-192.5,"y":122.5}]}],"background":"rgba(0, 0, 0, 0)"}';
         var designid = GetURLParameter('designid');
+        console.log("design and user ids");
+        console.log(designid);
         var userid = GetURLParameter('userid');
+        console.log(userid);
         // console.log("in kitchen, this is a list of columns");
         // console.log(columns);
         var designobj = eval("(" + decodeURI(design) + ')');
