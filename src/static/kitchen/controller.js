@@ -249,11 +249,11 @@ function addAccessors($scope) {
   //   addImage('encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToyqM2gcwH1vXUwN0vOMsl24f8Yns7Y-H-rFbssDUOVBQUeREYOA&database=' + database);
   // };
   $scope.databasesource = function () {
-    var database = prompt("What is the ducking source of your database?", "Put your database here.");
+    var database = prompt("Field name that contains image url please", "Fieldname");
     if (database) {
       addImage(database);
     } else {
-      alert("No database entered, ya dingus.");
+      alert("You must supply a field which contains your images.");
     }
   };
   // $scope.addImage1 = function () {
