@@ -200,16 +200,16 @@ export default class Profile extends React.Component {
                       <div id="stepbystep" className="col-xs-12">
                         <h2><b>Connect to your database</b></h2>
                         <ul>
-                        <li>Choose which type of database you are connecting to<li>
-                        <li>Then fill out the form with your database credentials<li>
+                        <li>Choose which type of database you are connecting to</li>
+                        <li>Then fill out the form with your database credentials</li>
                         </ul>
                         <img src="/img/stepbystep/step1.png"></img>
                       </div>
                       <div id="stepbystep" className="col-xs-12">
                           <h2><b>Simple to add headshot placeholders</b></h2>
                           <ul>
-                          <li>Click on the placeholder button next to employee picture<li>
-                          <li>It adds a default placeholder picture in the middle of the id<li>
+                          <li>Click on the placeholder button next to employee picture</li>
+                          <li>It adds a default placeholder picture in the middle of the id</li>
                           </ul>
                           <img src="/img/stepbystep/step2.png"></img>
 
