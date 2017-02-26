@@ -279,12 +279,12 @@ function addAccessors($scope) {
     window.open('data:image/svg+xml;utf8,' +
       encodeURIComponent(canvas.toSVG()));
   };
-  $scope.rasterizeJSON = function (userid,designid) {
+  $scope.rasterizeJSON = function () {
     var design = JSON.stringify(canvas);
     console.log("About to save- stringified design is:");
     console.log("design");
-    var userid = userid;
-    var designid = designid;
+    // var userid = userid;
+    // var designid = designid;
     var data = {
       design:design,
       userid:userid,

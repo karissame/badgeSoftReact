@@ -187,7 +187,7 @@ app.post('/getColumns', function(req,res) {
             // console.log("Got column response as ",results);
             var columns = results;
             console.log("About to check for designs");
-            knex('designs').select('*').where('userid',req.body.data.userid)
+            knex('designs').select('*').havingIn('userid',[req.body.data.userid,0])
               .asCallback(function(err,results2) {
                   if (err)    {
                       console.log("Error retrieving designs");

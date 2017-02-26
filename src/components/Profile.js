@@ -74,7 +74,7 @@ export default class Profile extends React.Component {
           this.setState({edit:false});
       } else {
       if (this.state.password === this.state.passconfirm) {
-          if (this.state.passconfirm || this.state.passconfirm) {
+          if (this.state.passconfirm) {
             //   console.log("Password change accepted. Both inputs match");
               var passChange = true;
           }
