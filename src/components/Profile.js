@@ -239,6 +239,12 @@ export default class Profile extends React.Component {
                                         <img src="/img/stepbystep/step4.png"></img>
                                     </div>
                             </div>
+                            <div id="videoinstruction" className="col-xs-12">
+                              <h1><b>Card Editor Demonstration</b></h1>
+                              <video controls>
+                                <source src="/img/readme1.mp4" type="video/mp4"></source>
+                              </video>
+                            </div>
                 </div>
               </div>
         );

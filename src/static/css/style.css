@@ -202,3 +202,22 @@ img#pic {
     margin:0 auto;
     display:block;
 }
+#videoinstruction   {
+    background-color: #FED100;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 40px;
+}
+#videoinstruction h1    {
+    font-size 30px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+#videoinstruction video  {
+    width: 941px;
+    height: 500px;
+}
+#registerform   {
+    align-items: center;
+}
