@@ -127,8 +127,7 @@
         <div class="tab-content">
 
             <div class="tab-pane active" id="simple-shapes">
-                <p>Add <strong>shapes</strong> to canvas:<label for="color" style="margin-left:10px">Color: </label>
-                    <input type="color" style="width:40px" bind-value-to="fill"></p>
+<p>Add <strong>shapes</strong> to canvas:
 
                 <button type="button" class="btn rect" ng-click="addRect()">Rectangle</button>
                 <button type="button" class="btn circle" ng-click="addCircle()">Circle</button>
@@ -159,7 +158,13 @@
 
                 <!--</div>-->
                 <div class="tab-pane" id="object-controls-pane">
-                    <div style="margin-top: 10px;" id="global-controls">
+
+
+                </div>
+                <!--<div id="text-wrapper" style="margin-top: 10px" ng-show="getText()"> ************* use this one if you want it to hide-->
+                <div style="float:left">
+<!--****************LOOK AT CONTROLLERJS LINE 203************-->
+                   <div style="margin-top: 10px;" id="global-controls">
                         <p>
                             <!-- Export canvas as:
                             <button class="btn btn-success" id="rasterize" ng-click="rasterize()">
@@ -174,11 +179,8 @@
                         </p>
 
                     </div>
-
-                </div>
-                <!--<div id="text-wrapper" style="margin-top: 10px" ng-show="getText()"> ************* use this one if you want it to hide-->
-                <div style="float:left">
-<!--****************LOOK AT CONTROLLERJS LINE 203************-->
+                    <label for="color" style="margin-left:10px">Color: </label>
+                    <input type="color" style="width:40px" bind-value-to="fill"></p>
                     <p><b>Field Names:</b>
                         <select id="fieldNames" onChange="$('textarea')[0].value+=('<'+value+'>')">
                             <option value="" class="ng-binding">Select from these fields</option>
