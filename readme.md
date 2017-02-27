@@ -19,7 +19,7 @@ www.badgedesignonline.com
 Badge Design Online is an online solution to printing your companies badge's using your database.  Once on our website you can connect your mySQL database with your employee fields.  Once connected to your database you can create a template to be able to populate your template and batch print your badges.  Once you create a template you can save them for use later as needed for new employee's or lost badges.
 
 ##Video Demonstration
-[Card Editor](https://www.badgedesignonline.com/readmefiles/readme1.mov)
+[Card Editor](https://www.badgedesignonline.com/readmefiles/readme1.mp4)
 
 
 ##Technologies 

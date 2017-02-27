@@ -137,9 +137,9 @@ export default class Profile extends React.Component {
                               <h2>Profile Details</h2>
                               <h3 id="fname">First Name:&nbsp; &nbsp; </h3><input value={this.state.fname} onChange={this.handleChange.bind(this,'fname')} placeholder={this.props.user.fname} /><br />
                               <h3 id="lname">Last Name:&nbsp; &nbsp; </h3><input value={this.state.lname} onChange={this.handleChange.bind(this,'lname')} placeholder={this.props.user.lname} /><br />
-                              <h3 id="pass">Password:&nbsp; &nbsp; </h3><input value={this.state.password} onChange={this.handleChange.bind(this,'password')} /><br />
-                              <h3 id="passconfirm">Password:&nbsp; &nbsp; </h3><input value={this.state.passconfirm} onChange={this.handleChange.bind(this,'passconfirm')} /><br />
-                              <h3 id="imgUrl">Image Url:&nbsp; &nbsp;</h3><input value={this.state.imageurl} onChange={this.handleChange.bind(this,'imageurl')} placeholder={this.props.user.imgUrl} /><br />
+                              <h3 id="pass">Password:&nbsp; &nbsp; &nbsp; </h3><input value={this.state.password} onChange={this.handleChange.bind(this,'password')} /><br />
+                              <h3 id="passconfirm">Password:&nbsp; &nbsp; &nbsp; </h3><input value={this.state.passconfirm} onChange={this.handleChange.bind(this,'passconfirm')} /><br />
+                              <h3 id="imgUrl">Image Url:&nbsp; &nbsp; &nbsp;</h3><input value={this.state.imageurl} onChange={this.handleChange.bind(this,'imageurl')} placeholder={this.props.user.imgUrl} /><br />
                               </div><div id="profile" className="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0">
                               <h2>Database Connection</h2>
                               <h3 id="dbclient">DB Type:&nbsp; &nbsp; </h3><select value={this.state.dbclient} onChange={this.handleChange.bind(this,'dbclient')}>
@@ -198,11 +198,11 @@ export default class Profile extends React.Component {
                         </div>
                 </div>
                             <div id="cardinstructions" className="col-xs-12">
-                                    <div id="stepbystep" className="col-xs-12">
-                                      <h2><b>No software to download or maintain</b></h2>
+                                    <div id="stepbystep" className="col-xs-12 col-md-6">
+                                      <h2><b>** No software to download or maintain **</b></h2>
                                     </div>
-                                    <div id="stepbystep" className="col-xs-12">
-                                        <h2><b>Print to your printer of choice 24/7</b></h2>
+                                    <div id="stepbystep" className="col-xs-12 col-md-6">
+                                        <h2><b>** Print to your printer of choice 24/7 **</b></h2>
                                     </div>
                                     <div id="stepbystep" className="col-xs-12 col-sm-6">
                                       <h2><b>Connect to your database</b></h2>
@@ -238,6 +238,12 @@ export default class Profile extends React.Component {
                                         </ul>
                                         <img src="/img/stepbystep/step4.png"></img>
                                     </div>
+                            </div>
+                            <div id="videoinstruction" className="col-xs-12">
+                              <h1><b>Card Editor Demonstration</b></h1>
+                              <video controls>
+                                <source src="/img/readme1.mp4" type="video/mp4"></source>
+                              </video>
                             </div>
                 </div>
               </div>

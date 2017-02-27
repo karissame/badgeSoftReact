@@ -56,7 +56,7 @@ a, a:visited, a:hover, a:active {
 }
 #footerImg {
     width: 100%;
-    height: 80px;
+    height: 60px;
     bottom: 0px;
     left: 0px;
     margin: 0;
@@ -75,7 +75,6 @@ a, a:visited, a:hover, a:active {
     margin-top: 8px;
     margin-bottom: 6;
 }
-
 #profile {
     background-color: #FED100;
     border-radius: 5%;
@@ -106,7 +105,8 @@ a, a:visited, a:hover, a:active {
 }
 #profile h3{
     display: inline-block;
-    margin: 0px;
+    margin: 4px;
+    padding-left: 10px;
 }
 #profile h2{
     font-weight: bolder;
@@ -216,4 +216,23 @@ img#pic {
     width:995px;
     margin:0 auto;
     display:block;
+}
+#videoinstruction   {
+    background-color: #FED100;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 40px;
+}
+#videoinstruction h1    {
+    font-size 30px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+#videoinstruction video  {
+    width: 941px;
+    height: 500px;
+}
+#registerform   {
+    align-items: center;
 }
