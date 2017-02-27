@@ -107,19 +107,19 @@ export default class Register extends React.Component {
     return (
       <div className="row">
         <form id="registerform" onSubmit={this.handleSubmit}>
-          <div id="profile" className="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-2">
+          <div id="profile" className="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
             <h2>Profile Details</h2>
             <h3 id="username">Username:&nbsp; &nbsp; </h3><input value={this.state.username}
                                                                  onChange={this.handleChange.bind(this, 'username')}/><br />
-            <h3 id="fname">First Name:&nbsp; &nbsp; </h3><input value={this.state.fname}
+            <h3 id="fname">First Name:&nbsp;&nbsp; </h3><input value={this.state.fname}
                                                                 onChange={this.handleChange.bind(this, 'fname')}/><br />
             <h3 id="lname">Last Name:&nbsp; &nbsp; </h3><input value={this.state.lname}
                                                                onChange={this.handleChange.bind(this, 'lname')}/><br />
-            <h3 id="pass">Password:&nbsp; &nbsp; </h3><input value={this.state.password}
+            <h3 id="pass">Password:&nbsp; &nbsp; &nbsp; </h3><input value={this.state.password}
                                                              onChange={this.handleChange.bind(this, 'password')}/><br />
-            <h3 id="passconfirm">Password:&nbsp; &nbsp; </h3><input value={this.state.passconfirm}
+            <h3 id="passconfirm">Password:&nbsp; &nbsp; &nbsp; </h3><input value={this.state.passconfirm}
                                                                     onChange={this.handleChange.bind(this, 'passconfirm')}/><br />
-            <h3 id="imgUrl">Image Url:&nbsp; &nbsp;</h3><input value={this.state.imageurl}
+            <h3 id="imgUrl">Image Url:&nbsp; &nbsp; &nbsp; </h3><input value={this.state.imageurl}
                                                                onChange={this.handleChange.bind(this, 'imageurl')}/><br />
             <div className="alert alert-info" role="alert">{this.state.alert}</div>
             <input type="submit" value="Submit"/>

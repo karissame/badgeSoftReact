@@ -67,6 +67,7 @@ input[type=radio] {
 #bd-wrapper {
     overflow: hidden;
     position: relative;
+    padding-top: 0px;
 }
 
 #fps {
