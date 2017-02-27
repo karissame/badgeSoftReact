@@ -104,7 +104,38 @@ UserClass.prototype.register = function(callback) {
         });
     };
 
-
+app.get("/getDesign", function(req, res) {
+    console.log("in server, this is the req.query", req.query);
+    var designid=req.query.designid;
+    console.log(designid);
+    var userid=req.query.userid;
+    console.log(userid);
+    knex.select('design').from('designs').where('designid',designid)
+    .asCallback(function(err,data)    {
+        if (err)    {
+            console.log("error from knex call");
+            res.send(console.error(err));
+        }
+        console.log("no error");
+        if (data) {
+            console.log("there is data returned from query");
+        } if (data[0]) {
+            console.log("there is a first object");
+        }
+        // console.log(data);
+        // console.log(data[0]);
+        console.log("About to log design rec'd");
+        console.log(data[0].design);
+        if (data[0].design) {
+            // console.log(data[0]);
+            console.log("'"+data[0].design+"'");
+            res.send({design:data[0].design});
+        } else {
+            console.log("no data received from knex call");
+            res.send("no data received from knex call");
+        }
+    });
+});
 
 // ********************
 app.post("/login",function(req,res){
