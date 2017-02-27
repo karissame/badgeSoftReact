@@ -195,11 +195,11 @@
 
                 for (property in candidate) {
                     var regex = new RegExp("<" + property + ">", "gi");
-                    var regex2 = new RegExp(property +':"[^"]+"','i');
+                    var regex2 = new RegExp('"src":"[^"]+"','i');
                     designSwap = designSwap.replace(regex, candidate[property]);
                     if (/\.jpeg|\.jpg|\.png|.gif/i.test(candidate[property])) {
                         console.log(candidate[property]);
-                        designSwap=designSwap.replace("/kitchen/placeholder.jpeg","'"+candidate[property]+"'");
+                        designSwap=designSwap.replace(regex2,'"src":"'+candidate[property]+'"');
                     }
                 }
             }
@@ -209,12 +209,12 @@
                 });
                 console.log("loaded");
                 console.log("trying to shrink it now");
-                var SCALE_FACTOR=.5;
+                var SCALE_FACTOR=.75;
 
                 canvas.setHeight(canvas.getHeight() * (1*SCALE_FACTOR));
                 canvas.setWidth(canvas.getWidth() * (1*SCALE_FACTOR));
 
-                canvas.setZoom(canvas.getZoom()*.5);
+                canvas.setZoom(canvas.getZoom()*.75);
 
                 canvas.renderAll();
                     }

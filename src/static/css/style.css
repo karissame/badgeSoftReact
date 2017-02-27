@@ -1,8 +1,13 @@
 
 body {
     margin: 0;
+    padding-left: 0 !important;
     background-color: #FDFDFD;
 }
+@media (max-width: 767px) {
+body {
+    padding-left: 0 !important;
+}}
 #canvas-wrapper {
     float:left;
     position: relative;
@@ -208,6 +213,9 @@ img#pic {
     border:none;
     margin:none;
     padding:none;
+    position: absolute;
+    top:0;
+    left:0;
 }
 #kitchensinkiframe  {
     background:none transparent;
