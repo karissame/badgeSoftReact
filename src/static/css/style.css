@@ -131,9 +131,9 @@ a, a:visited, a:hover, a:active {
     text-align: center;
     margin-bottom: 20px;
 }
-form {
-    display: inline-block;
-}
+/*form {*/
+    /*display: inline-block;*/
+/*}*/
 img#pic {
     position: absolute;
     right: 5px;
@@ -233,6 +233,6 @@ img#pic {
     width: 941px;
     height: 500px;
 }
-#registerform   {
-    align-items: center;
-}
+/*#registerform   {*/
+    /*align-items: center;*/
+/*}*/
