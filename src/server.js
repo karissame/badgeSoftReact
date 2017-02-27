@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 var knex = require('knex')({
   client: 'mysql',
