@@ -280,13 +280,13 @@ function addAccessors($scope) {
       encodeURIComponent(canvas.toSVG()));
   };
   $scope.rasterizeJSON = function () {
-    var design = JSON.stringify(canvas);
+    var designNow = JSON.stringify(canvas);
     console.log("About to save- stringified design is:");
-    console.log("design");
+    console.log(designNow);
     // var userid = userid;
     // var designid = designid;
     var data = {
-      design:design,
+      design:designNow,
       userid:userid,
       designid:designid
     };
@@ -297,6 +297,7 @@ function addAccessors($scope) {
       dataType: "json",
       data: data,
       success: function (response) {
+        console.log("Response to JSON save is", response);
         alert('Success');
 
       },

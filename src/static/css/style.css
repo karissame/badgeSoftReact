@@ -69,6 +69,7 @@ a, a:visited, a:hover, a:active {
 }
 #buttonsmargin  {
     margin-bottom: 0px;
+
 }
 #welcomename    {
     margin-top: 8px;
@@ -130,10 +131,19 @@ a, a:visited, a:hover, a:active {
     text-align: center;
     margin-bottom: 20px;
 }
+form {
+    display: inline-block;
+}
 img#pic {
     position: absolute;
     right: 5px;
     top: 4px;
+}
+.logo {
+    position: absolute;
+    display: inline-block;
+    top:5px;
+    right:85px;
 }
 #cardinstructions   {
     margin: 0;
@@ -193,6 +203,11 @@ img#pic {
 }
 #preview .card-wrapper{
     border-style: none;
+}
+#nomargin {
+    border:none;
+    margin:none;
+    padding:none;
 }
 #kitchensinkiframe  {
     background:none transparent;

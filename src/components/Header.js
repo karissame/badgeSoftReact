@@ -48,6 +48,7 @@ export default class Header extends React.Component {
                     <ul>
                     <li><h3 id="welcomename">Welcome, {this.props.user.username}!</h3></li>
                   </ul>
+                  <div className="logo"><img id="logo" src="/img/logo.png" height="75px"/></div>
                   <img id="pic" src={this.props.user.imageurl} width="75px" height="75px" />
               </div>
           );
@@ -64,7 +65,9 @@ export default class Header extends React.Component {
               />
             </label>
             <input type="submit" value="Submit"/>
-          </form><div className="alert alert-info" role="alert">{this.props.alert}</div>
+          </form>
+          <div className="logo"><img id="logo" src="/img/logo.png" height="75px"/></div>
+          <div className="alert alert-info" role="alert">{this.props.alert}</div>
           </div>
         );
         }
