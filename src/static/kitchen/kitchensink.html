@@ -161,15 +161,15 @@
                 <div class="tab-pane" id="object-controls-pane">
                     <div style="margin-top: 10px;" id="global-controls">
                         <p>
-                            Export canvas as:
+                            <!-- Export canvas as:
                             <button class="btn btn-success" id="rasterize" ng-click="rasterize()">
                                 Image
                             </button>
                             <button class="btn btn-success" id="rasterize-svg" ng-click="rasterizeSVG()">
                                 SVG
-                            </button>
+                            </button> -->
                             <button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON(userid,designid)">
-                                JSON
+                                SAVE Design
                             </button>
                         </p>
 
@@ -383,7 +383,10 @@
             console.log(design);
             console.log("Going to load user design")
             if (design) {
-            canvas.loadFromJSON(decodeURI(design));}
+            // canvas.loadFromJSON(decodeURI(design));}
+            canvas.loadFromJSON(design, canvas.renderAll.bind(canvas), function(o, object) {
+    fabric.log(o, object);});
+}
             console.log("canvas should be loaded");
        });
         // console.log(designobj);
