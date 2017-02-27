@@ -585,8 +585,8 @@ a:hover {
 }
 
 .container-fluid {
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 0;
+    padding-left: 0;
     *zoom: 1;
 }
 
@@ -5469,8 +5469,8 @@ button.close {
 
 @media (max-width: 767px) {
     body {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {

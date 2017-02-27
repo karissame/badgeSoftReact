@@ -100,7 +100,7 @@
 
 
 </script>
-<div id="no-margin" ng-controller="CanvasControls">
+<div className="container-fluid" id="no-margin" ng-controller="CanvasControls">
     <!--[if IE]>
     <script src="../lib/fonts/Delicious.font.js"></script><![endif]-->
     <script src="bootstrap.js"></script>
@@ -188,7 +188,7 @@
             console.log("design successfully assigned. Design is");
             console.log(design);
             if (design) {
-            for (i=0;i<1;i++) {
+            for (i=1;i<2;i++) {
                 var canvas = new fabric.Canvas('canvas');
                 var designSwap = design;
                 var candidate = candidatesobj[i];
@@ -209,12 +209,12 @@
                 });
                 console.log("loaded");
                 console.log("trying to shrink it now");
-                var SCALE_FACTOR=.75;
+                var SCALE_FACTOR=2;
 
                 canvas.setHeight(canvas.getHeight() * (1*SCALE_FACTOR));
                 canvas.setWidth(canvas.getWidth() * (1*SCALE_FACTOR));
 
-                canvas.setZoom(canvas.getZoom()*.75);
+                canvas.setZoom(canvas.getZoom()* (1*SCALE_FACTOR));
 
                 canvas.renderAll();
                     }
