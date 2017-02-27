@@ -382,7 +382,9 @@
             console.log("design successfully assigned. Design in ks is");
             console.log(design);
             console.log("Going to load user design")
-            canvas.loadFromJSON(design);
+            if (design) {
+            canvas.loadFromJSON(decodeURI(design));}
+            console.log("canvas should be loaded");
        });
         // console.log(designobj);
         var columnsobj = eval("(" + decodeURI(columns) + ')');
